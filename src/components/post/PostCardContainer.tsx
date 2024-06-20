@@ -1,5 +1,6 @@
 import React from 'react';
 import PostCard from './PostCard';
+import './post.scss';
 
 const PostCardontainer: React.FC = () => {
     return (

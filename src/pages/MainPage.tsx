@@ -1,5 +1,6 @@
 import React from 'react';
 import PostCardContainer from '../components/post/PostCardContainer';
+import './MainPage.scss';
 
 const MainPage: React.FC = () => {
     return (
