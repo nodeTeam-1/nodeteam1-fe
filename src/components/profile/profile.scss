@@ -1,0 +1,11 @@
+.profile-content{
+    display: flex;
+    flex-direction: column;
+    
+    .profile-actions,
+    .profile-stats {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
