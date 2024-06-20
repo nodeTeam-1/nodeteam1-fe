@@ -1,7 +1,11 @@
 import React from 'react';
 
 const PostImage: React.FC = () => {
-    return <div className='post-image'>PostImage</div>;
+    return (
+        <div className='post-image'>
+            <img src='https://i.pinimg.com/originals/01/1c/df/011cdf2a20ced518d3fb2b448e8024f8.jpg' alt='post-image' />
+        </div>
+    );
 };
 
 export default PostImage;

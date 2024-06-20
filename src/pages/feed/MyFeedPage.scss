@@ -1,0 +1,26 @@
+.my-feed-page {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+
+    .tab-menu {
+        .tabs{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #000;
+
+            li {
+                padding: 10px 20px;
+                color: #333;
+
+                &.active {
+                    color: #000;
+                    font-weight: bold;
+                }
+
+            }
+
+        }
+    }
+}

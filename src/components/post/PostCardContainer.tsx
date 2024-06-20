@@ -1,7 +1,12 @@
 import React from 'react';
+import PostCard from './PostCard';
 
-const PostImageContainer: React.FC = () => {
-    return <div className='post-image-container'></div>;
+const PostCardontainer: React.FC = () => {
+    return (
+        <div className='post-card-container'>
+            <PostCard />
+        </div>
+    );
 };
 
-export default PostImageContainer;
+export default PostCardontainer;
