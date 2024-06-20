@@ -7,6 +7,6 @@ const MainPage: React.FC = () => {
             <PostCardContainer />
         </div>
     );
-}
+};
 
 export default MainPage;

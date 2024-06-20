@@ -9,6 +9,6 @@ const MyFeed: React.FC = () => {
             <PostCard />
         </div>
     );
-}
+};
 
 export default MyFeed;
