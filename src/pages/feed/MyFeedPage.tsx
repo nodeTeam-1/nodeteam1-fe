@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProfileCard from '../../components/profile/ProfileCard';
-import PostImageContainer from '../../components/post/PostImageContainer';
-import './MyFeedPage.scss';
+import PostImageContainer from './../../components/postImage/PostImageContainer';
+import './feed.scss';
 
 const MyFeedPage: React.FC = () => {
     const [selectedTab, setSelectedTab] = useState<number>(0);

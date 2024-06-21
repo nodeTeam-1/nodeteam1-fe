@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfileImage from './ProfileImage';
 import ProfileContent from './ProfileContent';
+import './profile.scss';
 
 const ProfileCard: React.FC = () => {
     return (

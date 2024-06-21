@@ -1,6 +1,7 @@
 import React from 'react';
-import PostImage from './PostImage';
+import PostImage from '../postImage/PostImage';
 import PostContent from './PostContent';
+import './post.scss';
 
 const PostCard: React.FC = () => {
     return (
