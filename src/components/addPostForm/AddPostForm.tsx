@@ -40,19 +40,20 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ setClose, close }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='form-container form-container-post'>
-            <div>
+            <h2 className='form-title'>포스트 올리기</h2>
+            <div className='input-wrap photo-input'>
                 <label htmlFor='photo'>사진</label>
                 <input type='file' id='photo' {...register('photo', { required: '사진을 등록해 주세요' })} />
                 {errors.photo && <p>{errors.photo.message}</p>}
             </div>
 
-            <div>
+            <div className='input-wrap content-input'>
                 <label htmlFor='content'>내용</label>
                 <textarea id='content' {...register('content', { required: '내용을 입력해 주세요.' })} />
                 {errors.content && <p>{errors.content.message}</p>}
             </div>
 
-            <div>
+            <div className='input-wrap location-input'>
                 <label htmlFor='location'>위치</label>
                 <input
                     type='text'
@@ -62,17 +63,18 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ setClose, close }) => {
                 {errors.location && <p>{errors.location.message}</p>}
             </div>
 
-            <div>
-                <label htmlFor='tags'>#</label>
+            <div className='input-wrap tags-input'>
+                <label htmlFor='tags'>태그</label>
                 <input type='text' id='tags' />
             </div>
-
-            <button type='submit' className='btn btn-submit'>
-                올리기
-            </button>
-            <button type='button' className='btn btn-cancel' onClick={handleCancel}>
-                취소
-            </button>
+            <div className='btn-wrap gap'>
+                <button type='button' className='btn btn-cancel' onClick={handleCancel}>
+                    취소
+                </button>
+                <button type='submit' className='btn btn-submit'>
+                    업로드
+                </button>
+            </div>
         </form>
     );
 };

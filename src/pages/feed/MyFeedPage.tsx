@@ -22,7 +22,9 @@ const MyFeedPage: React.FC = () => {
         <>
             <div className='my-feed-page'>
                 <ProfileCard />
-                <div className='btn btn-add-post'>게시글 올리기</div>
+                <div className='btn btn-add-post' onClick={() => setClose(true)}>
+                    포스트 올리기
+                </div>
                 <div className='tab-menu'>
                     <ul className='tabs'>
                         {tabs.map((tab, index) => (

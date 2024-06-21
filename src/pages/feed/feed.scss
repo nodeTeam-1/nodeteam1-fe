@@ -3,8 +3,15 @@
     max-width: 768px;
     margin: 0 auto;
 
+    .btn {
+        .btn-add-post {
+
+            font-size: 14px;
+        }
+    }
+
     .tab-menu {
-        .tabs{
+        .tabs {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,15 +33,17 @@
     }
 }
 
-.feed-detail-page{
+.feed-detail-page {
     width: 100%;
     max-width: 768px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
+
     .feed-image {
         width: 60%;
     }
+
     .feed-comment {
         width: 40%;
     }
@@ -42,12 +51,14 @@
 
 @media (max-width: 768px) {
 
-    .feed-detail-page{
+    .feed-detail-page {
         display: flex;
         flex-direction: column;
+
         .feed-image {
             width: 100%;
         }
+
         .feed-comment {
             width: 100%;
         }
