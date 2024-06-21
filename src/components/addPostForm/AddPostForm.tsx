@@ -40,7 +40,6 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ setClose, close }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='form-container form-container-post'>
-            <h2 className='form-title'>포스트 올리기</h2>
             <div className='input-wrap photo-input'>
                 <label htmlFor='photo'>사진</label>
                 <input type='file' id='photo' {...register('photo', { required: '사진을 등록해 주세요' })} />
@@ -64,7 +63,7 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ setClose, close }) => {
             </div>
 
             <div className='input-wrap tags-input'>
-                <label htmlFor='tags'>태그</label>
+                <label htmlFor='tags'>태그(선택)</label>
                 <input type='text' id='tags' />
             </div>
             <div className='btn-wrap gap'>
