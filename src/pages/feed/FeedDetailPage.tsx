@@ -1,6 +1,7 @@
 import React from 'react';
-import './feed.scss';
 import PostImage from '../../components/postImage/PostImage';
+import CommnetContainer from '../../components/comment/CommnetContainer';
+import './feed.scss';
 
 const FeedDetailPage: React.FC = () => {
     return (
@@ -8,8 +9,11 @@ const FeedDetailPage: React.FC = () => {
             <div className='feed-image'>
                 <PostImage />
             </div>
-            <div className='feed-comment'>댓글영역</div>
+            <div className='feed-comment'>
+                <CommnetContainer />
+            </div>
         </div>
     );
 };
+
 export default FeedDetailPage;
