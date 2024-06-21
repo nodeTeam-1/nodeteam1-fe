@@ -91,13 +91,13 @@ video {
     vertical-align: baseline;
     text-decoration: none;
     scroll-behavior: smooth;
-    font-family: "Lato", "Noto Sans KR", sans-serif;
+    font-family: "Noto Sans KR", "Lora", serif;
     font-weight: 400;
     letter-spacing: -1px;
 }
 
 input {
-    font-family: "Lato", "Noto Sans KR", sans-serif;
+    font-family: "Noto Sans KR", "Lora", serif;
     font-weight: 400;
 }
 

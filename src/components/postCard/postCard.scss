@@ -22,7 +22,7 @@
     border: 1px solid white;
     cursor: pointer;
 
-    img{
+    img {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -34,7 +34,37 @@
     }
 }
 
-.post-card-container{
-    .post-card{
+.post-card-container {
+    .post-action {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .profile-image {}
+
+        .post-info {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            flex: 1;
+
+            .post-id {}
+
+            .post-date {}
+
+            .post-location {
+                width: 100%;
+            }
+        }
+
+        svg {
+            cursor: pointer;
+        }
     }
+
+    .post-card {}
 }
+
+
+@media (max-width: 768px) {}
