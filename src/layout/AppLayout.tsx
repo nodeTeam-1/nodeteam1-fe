@@ -10,8 +10,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     return (
         <>
             <ToastMessage />
-            <Navbar />
             {children}
+            <Navbar />
         </>
     );
 };

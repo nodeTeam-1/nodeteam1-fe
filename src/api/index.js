@@ -4,12 +4,14 @@ import axios from 'axios';
 const LOCAL_URL = process.env.REACT_APP_LOCAL_URL;
 // const PRODUCT_URL = process.env.REACT_APP_PRODUCT_URL;
 
-console.log(LOCAL_URL);
 export const api = axios.create({
   baseURL: LOCAL_URL,
-  //withCredentials: true,
+  // withCredentials: true,
+  authorization: `Bearer ${sessionStorage.getItem("token")}`,
 });
 
+
+//api 호출 확인
 api.interceptors.request.use(
   (request) => {
     console.log("Starting Request", request);
@@ -20,9 +22,9 @@ api.interceptors.request.use(
     console.log("REQUEST ERROR", error);
   }
 );
-
 api.interceptors.response.use(
   (response) => {
+    console.log(response);
     return response;
   },
   function (error) {

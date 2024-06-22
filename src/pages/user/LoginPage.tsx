@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import { userLoginMutation } from '../../hooks/loginHook';
+import { useUserStore } from '../../store/userStore';
 
 interface FormData {
     email: string;
@@ -13,6 +14,7 @@ interface FormData {
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
+    const { setUser } = useUserStore();
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: ''
@@ -26,6 +28,7 @@ const LoginPage: React.FC = () => {
         });
     };
 
+    //api.post == react-query: mutation
     const mutation = userLoginMutation('/auth/login');
     const formSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
@@ -43,9 +46,11 @@ const LoginPage: React.FC = () => {
 
     useEffect(() => {
         if (mutation.isSuccess && mutation.data.status === 200) {
+            setUser(mutation.data.data.user.name);
+            sessionStorage.setItem("token", mutation.data.data.token);
             navigate('/');
         }
-    });
+    }, [mutation.isSuccess, mutation.data]);
     return (
         <div>
             LoginPage
