@@ -4,7 +4,7 @@ import './user.scss';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import { usePostMutation } from '../../hooks/loginHook';
+import { userRegisterMutation } from '../../hooks/loginHook';
 
 interface FormData {
     email: string;
@@ -30,7 +30,7 @@ const RegisterPage: React.FC = () => {
         });
     };
 
-    const mutation = usePostMutation('/user/register');
+    const mutation = userRegisterMutation('/user/register');
     const formSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         const { email, name, nickName, password } = formData;
