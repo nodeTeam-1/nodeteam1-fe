@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 import './user.scss';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +21,7 @@ const RegisterPage: React.FC = () => {
         name: '',
         nickName: ''
     });
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setFormData({
@@ -32,7 +34,15 @@ const RegisterPage: React.FC = () => {
     const formSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         const { email, name, nickName, password } = formData;
-        mutation.mutate({ email, password, name, level: nickName });
+        mutation.mutate({ email, password, name, level: nickName }, {
+            onError: (error: any) => {
+                if (error.response?.data?.message) {
+                    setErrorMessage(error.response.data.message);
+                } else {
+                    setErrorMessage('An unknown error occurred');
+                }
+            }
+        });
         /*
             //성공하면
             mutation.data.status에 백엔드가 200이 들어옴
@@ -45,9 +55,11 @@ const RegisterPage: React.FC = () => {
         */
     };
 
-    if (mutation.isSuccess && mutation.data.status === 200) {
-        navigate('/user/login');
-    }
+    useEffect(() => {
+        if (mutation.isSuccess && mutation.data.status === 200) {
+            navigate('/user/login');
+        }
+    });
     return (
         <div>
             Register_Page
@@ -72,6 +84,7 @@ const RegisterPage: React.FC = () => {
                             <button type='submit'>가입</button>
                         </div>
                     </form>
+                    {errorMessage && <p>{errorMessage}</p>}
                     {mutation.isError && <p>다시 시도해주세요.</p>}
                     {mutation.isSuccess && mutation.data && (
                         <p>성공적으로 가입되었습니다! 환영합니다, {mutation.data.data.status}</p>
