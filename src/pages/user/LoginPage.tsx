@@ -55,25 +55,19 @@ const LoginPage: React.FC = () => {
         }
     }, [mutation.isSuccess, mutation.data, user]);
     return (
-        <div>
-            LoginPage
-            <div>
-                <div>LOGO</div>
-                <div>
-                    <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => formSubmit(event)}>
-                        <div>
-                            <input type='email' name='email' placeholder='email' onChange={handleChange} />
-                        </div>
-                        <div>
-                            <input type='password' name='password' placeholder='password' onChange={handleChange} />
-                        </div>
-                        <div>
-                            <button type='submit'>로그인</button>
-                        </div>
-                    </form>
-                    {errorMessage && <p>{errorMessage}</p>}
+        <div className='user-page'>
+            <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => formSubmit(event)} className='form-container'>
+                <div className="form-title">로그인</div>
+                <div className='input-wrap'>
+                    <input type='email' name='email' placeholder='email' onChange={handleChange} />
                 </div>
-            </div>
+                <div className='input-wrap'>
+                    <input type='password' name='password' placeholder='password' onChange={handleChange} />
+                </div>
+                <button type='submit' className='btn btn-submit w-100'>로그인</button>
+
+                {errorMessage && <p>{errorMessage}</p>}
+            </form>
             <div>
                 계정이없으신가요?
                 <Link to={'/user/register'}>가입하기</Link>

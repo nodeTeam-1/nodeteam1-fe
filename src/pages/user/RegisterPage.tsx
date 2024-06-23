@@ -9,7 +9,6 @@ import { userRegisterMutation } from '../../hooks/loginHook';
 interface FormData {
     email: string;
     name: string;
-    nickName: string;
     password: string;
 }
 
@@ -19,7 +18,6 @@ const RegisterPage: React.FC = () => {
         email: '',
         password: '',
         name: '',
-        nickName: ''
     });
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -33,8 +31,8 @@ const RegisterPage: React.FC = () => {
     const mutation = userRegisterMutation('/user/register');
     const formSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        const { email, name, nickName, password } = formData;
-        mutation.mutate({ email, password, name, level: nickName }, {
+        const { email, name, password } = formData;
+        mutation.mutate({ email, password, name }, {
             onError: (error: any) => {
                 if (error.response?.data?.message) {
                     setErrorMessage(error.response.data.message);
@@ -61,36 +59,28 @@ const RegisterPage: React.FC = () => {
         }
     });
     return (
-        <div>
-            Register_Page
-            <div>
-                <div>LOGO</div>
-                <div>
-                    <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => formSubmit(event)}>
-                        <div>친구들의 사진과 동영상을 보려면 가입하세요.</div>
-                        <div>
-                            <input type='email' name='email' placeholder='이메일 주소' onChange={handleChange} />
-                        </div>
-                        <div>
-                            <input type='text' name='name' placeholder='이름' onChange={handleChange} />
-                        </div>
-                        <div>
-                            <input type='text' name='nickName' placeholder='사용자 이름' onChange={handleChange} />
-                        </div>
-                        <div>
-                            <input type='password' name='password' placeholder='비밀번호' onChange={handleChange} />
-                        </div>
-                        <div>
-                            <button type='submit'>가입</button>
-                        </div>
-                    </form>
-                    {errorMessage && <p>{errorMessage}</p>}
-                    {mutation.isError && <p>다시 시도해주세요.</p>}
-                    {mutation.isSuccess && mutation.data && (
-                        <p>성공적으로 가입되었습니다! 환영합니다, {mutation.data.data.status}</p>
-                    )}
+        <div className='user-page'>
+            <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => formSubmit(event)} className='form-container'>
+            <div className="form-title">회원가입</div>
+                <div>친구들의 사진과 동영상을 보려면 가입하세요.</div>
+                <div className='input-wrap'>
+                    <input type='text' name='name' placeholder='이름' onChange={handleChange} />
                 </div>
-            </div>
+                <div className='input-wrap'>
+                    <input type='email' name='email' placeholder='이메일 주소' onChange={handleChange} />
+                </div>
+                <div className='input-wrap'>
+                    <input type='password' name='password' placeholder='비밀번호' onChange={handleChange} />
+                </div>
+                <button type='submit' className='btn btn-submit w-100'>회원가입</button>
+
+            </form>
+            {errorMessage && <p>{errorMessage}</p>}
+            {mutation.isError && <p>다시 시도해주세요.</p>}
+            {mutation.isSuccess && mutation.data && (
+                <p>성공적으로 가입되었습니다! 환영합니다, {mutation.data.data.status}</p>
+            )}
+
             <div>
                 계정이 있으신가요?
                 <Link to={'/user/login'}>로그인</Link>

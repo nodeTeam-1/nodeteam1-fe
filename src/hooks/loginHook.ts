@@ -8,7 +8,6 @@ export interface formData {
     email: string;
     password: string;
     name: string;
-    level: string;
 }
 
 //LoginPage: 로그인시 사용.
