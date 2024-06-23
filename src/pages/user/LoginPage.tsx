@@ -14,7 +14,7 @@ interface FormData {
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
-    const { setUser } = useUserStore();
+    const { user, setUser } = useUserStore();
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: ''
@@ -50,7 +50,10 @@ const LoginPage: React.FC = () => {
             sessionStorage.setItem("token", mutation.data.data.token);
             navigate('/');
         }
-    }, [mutation.isSuccess, mutation.data]);
+        if (user) {
+            navigate('/');
+        }
+    }, [mutation.isSuccess, mutation.data, user]);
     return (
         <div>
             LoginPage

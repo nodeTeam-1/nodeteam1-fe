@@ -20,6 +20,7 @@ export const userLoginMutation = (path: string) => {
 
 //MainPage: token확인 후 token 로그인시 사용.
 export const tokenLoginQuery = (path: string) => {
+    console.log('tokenLoginQuery');
     return useQuery({
         queryKey: ["tokenLogin"],
         queryFn: () => getAsync(path),
