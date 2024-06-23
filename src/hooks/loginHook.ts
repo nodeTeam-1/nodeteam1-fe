@@ -9,7 +9,7 @@ export interface formData {
     password: string;
     name: string;
     level: string;
-};
+}
 
 //LoginPage: 로그인시 사용.
 export const userLoginMutation = (path: string) => {
@@ -22,7 +22,7 @@ export const userLoginMutation = (path: string) => {
 export const tokenLoginQuery = (path: string) => {
     console.log('tokenLoginQuery');
     return useQuery({
-        queryKey: ["tokenLogin"],
+        queryKey: ['tokenLogin'],
         queryFn: () => getAsync(path),
         retry: 0
     });
@@ -33,7 +33,6 @@ export const userRegisterMutation = (
     path: string
 ): UseMutationResult<AxiosResponse<any>, unknown, formData, unknown> => {
     return useMutation<AxiosResponse<any>, unknown, formData>({
-            mutationFn: (data: formData) => postAsync(path, data)
-        }
-    );
+        mutationFn: (data: formData) => postAsync(path, data)
+    });
 };
