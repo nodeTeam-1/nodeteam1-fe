@@ -2,7 +2,7 @@
 import { useQuery, useMutation, UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 
-import { getAsync, postAsync } from '../api/methodsTS';
+import { getAsync, postAsync } from '../api/methods';
 
 export interface formData {
     email: string;
