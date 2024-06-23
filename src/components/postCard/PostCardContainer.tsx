@@ -2,23 +2,23 @@ import React from 'react';
 import PostCard from './PostCard';
 import ProfileImage from '../profile/ProfileImage';
 import { IoIosMore } from 'react-icons/io';
-import { useGetPost } from '../../hooks/useGetPost';
+import { useGetPosts } from './../../hooks/usePostHook';
 import './postCard.scss';
 
 const PostCardContainer: React.FC = () => {
-    const { data, isLoading, isError } = useGetPost();
+    const { data, isLoading, isError } = useGetPosts();
 
     if (isLoading) {
         return <div>Loading...</div>;
     }
 
-    if (isError) {
+    if (isError || !data) {
         return <div>Error loading posts</div>;
     }
 
     return (
         <div className='post-card-container'>
-            {data?.data.map((post) => (
+            {data.data.map((post: any) => (
                 <div key={post._id} className='post-card'>
                     <div className='post-action'>
                         <ProfileImage userId={post.userId._id} />
