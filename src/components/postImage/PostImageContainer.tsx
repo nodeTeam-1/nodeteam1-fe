@@ -5,7 +5,7 @@ import './postImage.scss';
 const PostImageContainer: React.FC = () => {
     return (
         <div className='post-image-container'>
-            <PostImage />
+            <PostImage src={''} alt={''} />
         </div>
     );
 };

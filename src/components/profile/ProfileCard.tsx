@@ -6,7 +6,7 @@ import './profile.scss';
 const ProfileCard: React.FC = () => {
     return (
         <div className='profile-card'>
-            <ProfileImage />
+            <ProfileImage userId={''} />
             <ProfileContent />
         </div>
     );
