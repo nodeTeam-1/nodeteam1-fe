@@ -13,8 +13,11 @@ interface Post {
     title: string;
     content: string;
     images: string[];
-    location: string;
-    createdAt: string;
+    category: string;
+    // location: string;
+    tags: string[];
+    likeCount: number;
+    // createdAt: string;
 }
 
 const fetchPosts = async (): Promise<{ data: Post[] }> => {
@@ -22,6 +25,6 @@ const fetchPosts = async (): Promise<{ data: Post[] }> => {
     return data;
 };
 
-export const usePostsQuery = () => {
+export const useGetPost = () => {
     return useQuery<{ data: Post[] }, Error>('posts', fetchPosts);
 };

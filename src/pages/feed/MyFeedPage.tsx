@@ -14,9 +14,9 @@ const MyFeedPage: React.FC = () => {
     };
 
     const tabs = [
-        { title: '게시글', content: <PostImageContainer /> },
-        { title: '저장됨', content: <PostImageContainer /> },
-        { title: '태그됨', content: <PostImageContainer /> }
+        { title: '게시글', content: <PostImageContainer src={''} alt={''} /> },
+        { title: '저장됨', content: <PostImageContainer src={''} alt={''} /> },
+        { title: '태그됨', content: <PostImageContainer src={''} alt={''} /> }
     ];
 
     return (

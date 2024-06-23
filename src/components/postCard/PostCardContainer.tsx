@@ -2,11 +2,11 @@ import React from 'react';
 import PostCard from './PostCard';
 import ProfileImage from '../profile/ProfileImage';
 import { IoIosMore } from 'react-icons/io';
-import { usePostsQuery } from '../../hooks/usePostsQuery';
+import { useGetPost } from '../../hooks/useGetPost';
 import './postCard.scss';
 
 const PostCardContainer: React.FC = () => {
-    const { data, isLoading, isError } = usePostsQuery();
+    const { data, isLoading, isError } = useGetPost();
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -24,8 +24,10 @@ const PostCardContainer: React.FC = () => {
                         <ProfileImage userId={post.userId._id} />
                         <ul className='post-info'>
                             <li className='post-id'>{post.userId.name}</li>
-                            <li className='post-date'>{new Date(post.createdAt).toLocaleDateString()}</li>
-                            <li className='post-location'>{post.location}</li>
+                            <li className='post-date'>날짜</li>
+                            <li className='post-location'>위치</li>
+                            {/* <li className='post-date'>{new Date(post.createdAt).toLocaleDateString()}</li> */}
+                            {/* <li className='post-location'>{post.location}</li> */}
                         </ul>
                         <IoIosMore />
                     </div>
