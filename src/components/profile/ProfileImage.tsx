@@ -17,11 +17,11 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ userId }) => {
         return <div className='profile-image'>Error loading profile image</div>;
     }
 
-    const profileImageSrc = data.user.profileImage; // 프로필 이미지 URL 경로
+    const profileImageSrc = data.profileImage; // 프로필 이미지 URL 경로
 
     return (
         <div className='profile-image'>
-            <img src={profileImageSrc} alt={`${data.user.name}'s profile`} />
+            <img src={profileImageSrc} alt={`${data.name}'s profile`} />
         </div>
     );
 };

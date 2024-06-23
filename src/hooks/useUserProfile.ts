@@ -1,9 +1,21 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface UserProfile {
-    user: any;
-    // 사용자 프로필 정보에 대한 인터페이스 정의
+    _id: string;
+    email: string;
+    // password: string;
+    name: string;
+    level: string;
+    profileImage: string;
+    bio: string;
+    followers: string[];
+    followings: string[];
+    postLike: string[];
+    commentLike: string[];
+    bookMark: string[];
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
@@ -11,8 +23,8 @@ const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
     return data;
 };
 
-export const useUserProfile = (userId: string) => {
-    return useQuery({
+export const useUserProfile = (userId: string): UseQueryResult<UserProfile, unknown> => {
+    return useQuery<UserProfile, unknown>({
         queryKey: ['tokenLogin', userId],
         queryFn: () => fetchUserProfile(userId)
     });
