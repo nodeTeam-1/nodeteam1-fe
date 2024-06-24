@@ -39,9 +39,8 @@ const RegisterPage: React.FC = () => {
     const formSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
 
-        const { email, name, password } = formData;
         mutation.mutate(
-            { email, password, name },
+            formData,
             {
                 onError: (error: any) => {
                     console.error('뮤테이션 에러:', error);
