@@ -2,17 +2,25 @@ import { useQuery, useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios';
 import { getAsync, postAsync } from '../utils/api/methods';
 
+// User 데이터 인터페이스 정의
+interface User {
+    _id: string;
+    name: string;
+    profileImage: string;
+}
+
 // Post 데이터 인터페이스 정의
 export interface PostData {
-    userId: string;
+    _id: string;
+    userId: User;
     title: string;
     content: string;
-    images: string[];
+    images: string;
     category: string;
     tags: string[];
     likeCount: number;
-    createdAt: string;
-    updatedAt: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface PostResponse {

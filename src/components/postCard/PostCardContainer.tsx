@@ -2,10 +2,8 @@ import React from 'react';
 import PostCard from './PostCard';
 import ProfileImage from '../profile/ProfileImage';
 import { IoIosMore } from 'react-icons/io';
-import { useGetPosts } from './../../hooks/usePostHook';
+import { getPostsQuery } from './../../hooks/usePostHook';
 import './postCard.scss';
-
-import { AxiosResponse } from 'axios';
 
 interface User {
     _id: string;
@@ -18,7 +16,7 @@ interface Post {
     userId: User;
     title: string;
     content: string;
-    images: string[];
+    images: string;
     category: string;
     tags: string[];
     likeCount: number;
@@ -27,19 +25,23 @@ interface Post {
 }
 
 const PostCardContainer: React.FC = () => {
-    const { data, isLoading, isError } = useGetPosts();
+    const { data, isLoading, isError } = getPostsQuery(1, '', 10); // 기본값으로 사용
 
     if (isLoading) {
         return <div>Loading...</div>;
     }
 
-    if (isError || !data) {
+    if (isError || !data?.data?.data) {
         return <div>Error loading posts</div>;
+    }
+
+    if (data.data.data.length === 0) {
+        return <div>No posts available</div>;
     }
 
     return (
         <div className='post-card-container'>
-            {data.data.map((post: AxiosResponse<Post[]>['data'][0]) => (
+            {data.data.data.map((post: Post) => (
                 <div key={post._id} className='post-card'>
                     <div className='post-action'>
                         <ProfileImage userId={post.userId._id} />
