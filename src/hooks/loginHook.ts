@@ -11,6 +11,13 @@ export interface formData {
     name: string;
 }
 
+// VerifyData 인터페이스 정의
+export interface VerifyData {
+    email: string;
+    verificationCode: string;
+}
+
+
 // LoginPage: 로그인 시 사용
 export const userLoginMutation = (path: string) => {
     return useMutation<AxiosResponse<any>, unknown, Omit<formData, 'name'>>({
@@ -36,5 +43,14 @@ export const userRegisterMutation = (
 ): UseMutationResult<AxiosResponse<any>, unknown, formData, unknown> => {
     return useMutation<AxiosResponse<any>, unknown, formData>({
         mutationFn: (data: formData) => postAsync(path, data),
+    });
+};
+
+// VerifyPage: 사용자 인증 시 사용
+export const userVerifyMutation = (
+    path: string
+): UseMutationResult<AxiosResponse<any>, unknown, VerifyData, unknown> => {
+    return useMutation<AxiosResponse<any>, unknown, VerifyData>({
+        mutationFn: (data: VerifyData) => postAsync(path, data),
     });
 };
