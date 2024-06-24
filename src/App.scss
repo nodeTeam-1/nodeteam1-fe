@@ -55,7 +55,7 @@
     margin: 0 auto;
 
     .form-title {
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 600;
         padding: 16px 0;
     }
@@ -118,19 +118,5 @@
     border: 1px solid #000;
     text-align: center;
 }
-
-.logout-button {
-    padding: 10px 20px; /* Increase padding for a larger button */
-    font-size: 16px; /* Adjust font size */
-    border: none;
-    background-color: #add8e6;
-    cursor: pointer;
-}
-
-.logout-button:hover {
-    background-color: #87ceeb; /* Change color on hover */
-}
-
-
 
 @media (max-width: 768px) {}

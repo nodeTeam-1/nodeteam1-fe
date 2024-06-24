@@ -61,8 +61,8 @@ const RegisterPage: React.FC = () => {
     return (
         <div className='user-page'>
             <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => formSubmit(event)} className='form-container'>
-            <div className="form-title">회원가입</div>
-                <div>친구들의 사진과 동영상을 보려면 가입하세요.</div>
+                <div className="form-title">회원가입</div>
+                <div className='text-area'>친구들의 사진과 동영상을 보려면 가입하세요.</div>
                 <div className='input-wrap'>
                     <input type='text' name='name' placeholder='이름' onChange={handleChange} />
                 </div>
@@ -73,18 +73,16 @@ const RegisterPage: React.FC = () => {
                     <input type='password' name='password' placeholder='비밀번호' onChange={handleChange} />
                 </div>
                 <button type='submit' className='btn btn-submit w-100'>회원가입</button>
-
+                {errorMessage && <p>{errorMessage}</p>}
+                {mutation.isError && <p>다시 시도해주세요.</p>}
+                {mutation.isSuccess && mutation.data && (
+                    <p>성공적으로 가입되었습니다! 환영합니다, {mutation.data.data.status}</p>
+                )}
+                <div className='notice-wrap'>
+                    계정이 있으신가요?
+                    <Link to={'/user/login'}>로그인</Link>
+                </div>
             </form>
-            {errorMessage && <p>{errorMessage}</p>}
-            {mutation.isError && <p>다시 시도해주세요.</p>}
-            {mutation.isSuccess && mutation.data && (
-                <p>성공적으로 가입되었습니다! 환영합니다, {mutation.data.data.status}</p>
-            )}
-
-            <div>
-                계정이 있으신가요?
-                <Link to={'/user/login'}>로그인</Link>
-            </div>
         </div>
     );
 };

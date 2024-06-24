@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
                 {'[Navbar]'} 이름: {`"` + user + `"`} 님 로그인 중!
             </div>
             <div className='flex-item'>
-                <button className='logout-button' onClick={logoutClick}>
+                <button className='btn btn-logout' onClick={logoutClick}>
                     로그아웃
                 </button>
             </div>

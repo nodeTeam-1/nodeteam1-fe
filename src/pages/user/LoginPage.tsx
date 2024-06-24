@@ -65,13 +65,12 @@ const LoginPage: React.FC = () => {
                     <input type='password' name='password' placeholder='password' onChange={handleChange} />
                 </div>
                 <button type='submit' className='btn btn-submit w-100'>로그인</button>
-
                 {errorMessage && <p>{errorMessage}</p>}
+                <div className='notice-wrap'>
+                    계정이없으신가요?
+                    <Link to={'/user/register'}>가입하기</Link>
+                </div>
             </form>
-            <div>
-                계정이없으신가요?
-                <Link to={'/user/register'}>가입하기</Link>
-            </div>
         </div>
     );
 };
