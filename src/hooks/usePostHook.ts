@@ -1,99 +1,83 @@
-/* eslint-disable */
-import {
-    useMutation,
-    useQueryClient,
-    MutationFunction,
-    UseMutationResult,
-    UseQueryResult,
-    useQuery
-} from '@tanstack/react-query';
+import { useQuery, useMutation, UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
-import { getAsync, postAsync, putAsync, deleteAsync } from '../utils/api/methods';
+import { getAsync, postAsync } from '../utils/api/methods';
 
-interface User {
-    _id: string;
-    name: string;
-    profileImage: string;
-}
-
-interface Post {
-    _id: string;
-    userId: User;
-    title: string;
-    content: string;
-    images: string[];
-    category: string;
-    tags: string[];
-    likeCount: number;
-    createdAt: Date;
-    updatedAt: Date;
-}
-
-interface CreatePostData {
+// Post 데이터 인터페이스 정의
+export interface PostData {
     userId: string;
     title: string;
     content: string;
     images: string[];
     category: string;
     tags: string[];
+    likeCount: number;
+    createdAt: string;
+    updatedAt: string;
 }
 
-interface UpdatePostData {
-    _id: string;
-    title?: string;
-    content?: string;
-    images?: string[];
-    category?: string;
-    tags?: string[];
+export interface PostResponse {
+    data: PostData[];
+    totalPageNum?: number;
 }
 
-// 포스트 가져오기
-export const useGetPosts = (): UseQueryResult<AxiosResponse<Post[]>, unknown> => {
-    return useQuery<AxiosResponse<Post[]>, unknown>({
-        queryKey: ['posts'],
-        queryFn: () => getAsync('/post'),
-        retry: 0
+// Posts 목록 가져오기
+export const getPostsQuery = (page: number, name: string, pageSize: number) => {
+    const path = `/api/posts`;
+    return useQuery<AxiosResponse<PostResponse>>({
+        queryKey: ['getPosts', page, name, pageSize],
+        queryFn: () => getAsync(`${path}?page=${page}&name=${name}&pageSize=${pageSize}`)
     });
 };
 
-// 포스트 생성
-const createPost: MutationFunction<AxiosResponse<any>, CreatePostData> = async (postData: CreatePostData) => {
-    return await postAsync('/post', postData);
-};
-
-export const useCreatePost = (): UseMutationResult<AxiosResponse<any>, unknown, CreatePostData, unknown> => {
-    const queryClient = useQueryClient();
-
-    return useMutation<AxiosResponse<any>, unknown, CreatePostData>({
-        mutationFn: createPost,
-        // onSuccess: () => {
-        //     queryClient.invalidateQueries('posts'); // 'posts'로 변경
-        // }
+// Post 상세 정보 가져오기
+export const getPostDetailQuery = (postId: string) => {
+    const path = `/api/posts/${postId}`;
+    return useQuery<AxiosResponse<PostData>>({
+        queryKey: ['getPostDetail', postId],
+        queryFn: () => getAsync(path)
     });
 };
 
-// 포스트 업데이트
-const updatePost: MutationFunction<AxiosResponse<any>, UpdatePostData> = async (postData: UpdatePostData) => {
-    return await putAsync(`/post/${postData._id}`, postData);
-};
-
-export const useUpdatePost = (): UseMutationResult<AxiosResponse<any>, unknown, UpdatePostData, unknown> => {
-    const queryClient = useQueryClient();
-
-    return useMutation<AxiosResponse<any>, unknown, UpdatePostData>({
-        mutationFn: updatePost,
+// Post 생성
+export const createPostMutation = (): UseMutationResult<AxiosResponse<PostData>, unknown, PostData, unknown> => {
+    const path = `/api/posts`;
+    return useMutation<AxiosResponse<PostData>, unknown, PostData>({
+        mutationFn: (data: PostData) => postAsync(path, data)
     });
 };
 
-// 포스트 삭제
-const deletePost: MutationFunction<AxiosResponse<any>, string> = async (postId: string) => {
-    return await deleteAsync(`/post/${postId}`);
+// Post 업데이트
+export const updatePostMutation = (): UseMutationResult<AxiosResponse<PostData>, unknown, PostData, unknown> => {
+    const path = `/api/posts`;
+    return useMutation<AxiosResponse<PostData>, unknown, PostData>({
+        mutationFn: (data: PostData) => postAsync(path, data)
+    });
 };
 
-export const useDeletePost = (): UseMutationResult<AxiosResponse<any>, unknown, string, unknown> => {
-    const queryClient = useQueryClient();
+// Post 삭제
+export const deletePostMutation = (postId: string): UseMutationResult<AxiosResponse<void>, unknown, void, unknown> => {
+    const path = `/api/posts/${postId}`;
+    return useMutation<AxiosResponse<void>, unknown, void>({
+        mutationFn: () => postAsync(path, {})
+    });
+};
 
-    return useMutation<AxiosResponse<any>, unknown, string>({
-        mutationFn: deletePost,
+// Post Like 생성
+export const createPostLikeMutation = (
+    postId: string
+): UseMutationResult<AxiosResponse<void>, unknown, void, unknown> => {
+    const path = `/api/posts/like/${postId}`;
+    return useMutation<AxiosResponse<void>, unknown, void>({
+        mutationFn: () => postAsync(path, {})
+    });
+};
+
+// Post Like 삭제
+export const deletePostLikeMutation = (
+    postId: string
+): UseMutationResult<AxiosResponse<void>, unknown, void, unknown> => {
+    const path = `/api/posts/like/${postId}`;
+    return useMutation<AxiosResponse<void>, unknown, void>({
+        mutationFn: () => postAsync(path, {})
     });
 };
