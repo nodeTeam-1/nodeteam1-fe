@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import axios from 'axios';
+import { getAsync } from '../utils/api/methods';
+import { AxiosResponse } from 'axios';
 
 interface UserProfile {
     _id: string;
@@ -18,14 +19,14 @@ interface UserProfile {
     updatedAt: Date;
 }
 
-const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
-    const { data } = await axios.get(`/user/${userId}`);
-    return data;
-};
+// const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
+//     const { data } = await axios.get(`/user/${userId}`);
+//     return data;
+// };
 
-export const useUserProfile = (userId: string): UseQueryResult<UserProfile, unknown> => {
-    return useQuery<UserProfile, unknown>({
+export const useUserProfile = (userId: string) => {
+    return useQuery<AxiosResponse<UserProfile>>({
         queryKey: ['tokenLogin', userId],
-        queryFn: () => fetchUserProfile(userId)
+        queryFn: () => getAsync(`/api/user${userId}`)
     });
 };

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './user.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { userLoginMutation } from '../../hooks/loginHook';
+import { userLoginMutation } from '../../hooks/useLoginHook';
 import { useUserStore } from '../../store/userStore';
 
 interface FormData {

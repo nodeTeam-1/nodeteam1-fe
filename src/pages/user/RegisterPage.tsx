@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './user.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { userRegisterMutation, userVerifyMutation } from './../../hooks/loginHook';
+import { userRegisterMutation, userVerifyMutation } from '../../hooks/useLoginHook';
 
 interface FormData {
     email: string;
