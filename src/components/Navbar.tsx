@@ -1,9 +1,18 @@
 import React from 'react';
 import { useUserStore } from '../store/userStore';
 import { useLocation } from 'react-router';
+import { MdHomeFilled } from 'react-icons/md';
+import { IoIosSearch } from 'react-icons/io';
+import { MdOutlinePlace } from 'react-icons/md';
+import { MdOutlineAddBox } from 'react-icons/md';
+import { LuSend } from 'react-icons/lu';
+import { MdOutlineLogout } from 'react-icons/md';
+import ProfileImage from './profile/ProfileImage';
 
 const Navbar: React.FC = () => {
     const { user, setUser } = useUserStore();
+    console.log('user', user);
+
     const logoutClick = () => {
         setUser('');
         sessionStorage.removeItem('token');
@@ -17,16 +26,37 @@ const Navbar: React.FC = () => {
         return <></>;
     }
     return (
-        <div className='flex-container'>
-            <div className='navbar-text'>
-                {'[Navbar]'} 이름: {`"` + user + `"`} 님 로그인 중!
-            </div>
-            <div className='flex-item'>
-                <button className='btn btn-logout' onClick={logoutClick}>
+        <nav className='navbar'>
+            <ul className='nav-list'>
+                <li className='nav-item'>
+                    홈
+                    <MdHomeFilled />
+                </li>
+                <li className='nav-item'>
+                    검색
+                    <IoIosSearch />
+                </li>
+                <li className='nav-item'>
+                    위치
+                    <MdOutlinePlace />
+                </li>
+                <li className='nav-item'>
+                    게시글
+                    <MdOutlineAddBox />
+                </li>
+                <li className='nav-item'>
+                    메세지
+                    <LuSend />
+                </li>
+                <li className='nav-item' onClick={logoutClick}>
                     로그아웃
-                </button>
-            </div>
-        </div>
+                    <MdOutlineLogout />
+                </li>
+                <li className='nav-item'>
+                    <ProfileImage userId={''} />
+                </li>
+            </ul>
+        </nav>
     );
 };
 
