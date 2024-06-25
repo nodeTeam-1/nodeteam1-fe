@@ -8,6 +8,7 @@ interface FormData {
     email: string;
     name: string;
     password: string;
+    passwordCheck: string;
     level: string;
     verificationCode?: string;
 }
@@ -17,6 +18,7 @@ const RegisterPage: React.FC = () => {
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: '',
+        passwordCheck: '',
         name: '',
         level: 'public',
         verificationCode: ''
@@ -62,9 +64,15 @@ const RegisterPage: React.FC = () => {
                 }
             );
         } else {
+            // 비밀번호 확인 로직
+            const { passwordCheck, ...newFormData } = formData;
+            if(formData.password !== passwordCheck)
+                return setErrorMessage('비밀번호 일치하지가 않습니다.');
+            setErrorMessage('');
+    
             // 회원가입 제출 로직
             registerMutation.mutate(
-                formData,
+                newFormData,
                 {
                     // onSuccess: (data: any) => {
                     //     if (data.status === 200) {
@@ -126,6 +134,14 @@ const RegisterPage: React.FC = () => {
                                 type='password'
                                 name='password'
                                 placeholder='비밀번호'
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className='input-wrap'>
+                            <input
+                                type='password'
+                                name='passwordCheck'
+                                placeholder='비밀번호 확인'
                                 onChange={handleChange}
                             />
                         </div>
