@@ -35,35 +35,122 @@
 }
 
 .post-card-container {
-    .post-action {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
+    .post-card-wrap {
 
-        .profile-image {}
 
-        .post-info {
+        .post-head {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            flex-wrap: wrap;
-            flex: 1;
 
-            .post-id {}
+            .profile-image {
+                width: 36px;
+                height: 36px;
+                margin-right: 10px;
+                border: 1px solid #eee;
+                margin-bottom: 3px;
+            }
 
-            .post-date {}
+            .post-info {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                flex: 1;
 
-            .post-location {
-                width: 100%;
+                .post-id {}
+
+                .post-date {}
+
+                .post-location {
+                    width: 100%;
+                }
+            }
+
+            svg {
+                cursor: pointer;
             }
         }
 
-        svg {
-            cursor: pointer;
+        .post-action {}
+
+        .post-card {
+            margin-bottom: 30px;
+
+            &:last-child {
+                margin-bottom: 80px;
+            }
+
+            .user-action-list {
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                .user-action {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    font-size: 16px;
+                    margin-right: 10px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                        cursor: pointer;
+                    }
+
+                    &.like {
+                        span {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+
+                    &.share {
+                        &.active {}
+                    }
+
+                    &.comment {
+                        &.active {}
+                    }
+                }
+            }
+
+            .post-contents {
+                .post-title {
+                    font-size: 16px;
+                    font-weight: 600;
+                    margin-top: 10px;
+                }
+
+                .post-content {
+                    font-size: 16px;
+                    margin-top: 10px;
+                }
+
+                .post-tags {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    margin-right: 6px;
+                    margin-top: 10px;
+
+                    .post-tag {
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+
         }
     }
-
-    .post-card {}
 }
 
 

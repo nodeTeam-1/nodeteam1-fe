@@ -1,5 +1,6 @@
 import React from 'react';
 import PostImage from '../postImage/PostImage';
+import PostCardAction from './PostCardAction';
 import './postCard.scss';
 
 interface User {
@@ -28,24 +29,18 @@ interface PostCardProps {
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
     return (
         <div className='post-card'>
-            <h2>{post.title}</h2>
-            <p>{post.content}</p>
-            <div className='post-images'>
-                {post.images.split(',').map((image, index) => (
-                    <PostImage key={index} src={image.trim()} alt={`Image ${index}`} />
-                ))}
-            </div>
-            <div className='post-meta'>
-                <span className='post-category'>{post.category}</span>
-                <span className='post-tags'>
+            <PostImage src={post.images} alt={`${post.images}`} />
+            <PostCardAction likeCount={post.likeCount} />
+            <div className='post-contents'>
+                <p className='post-title'>{post.title}</p>
+                <p className='post-content'>{post.content}</p>
+                <ul className='post-tags'>
                     {post.tags.map((tag, index) => (
-                        <span key={index} className='post-tag'>
-                            {tag}
-                        </span>
+                        <li key={index} className='post-tag'>
+                            #{tag}
+                        </li>
                     ))}
-                </span>
-                <span className='post-like-count'>{post.likeCount} likes</span>
-                <span className='post-date'>{new Date(post.createdAt).toLocaleDateString()}</span>
+                </ul>
             </div>
         </div>
     );

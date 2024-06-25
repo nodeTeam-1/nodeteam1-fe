@@ -42,8 +42,8 @@ const PostCardContainer: React.FC = () => {
     return (
         <div className='post-card-container'>
             {data.data.data.map((post: Post) => (
-                <div key={post._id} className='post-card'>
-                    <div className='post-action'>
+                <div className='post-card-wrap' key={post._id}>
+                    <div className='post-head'>
                         <ProfileImage userId={post.userId._id} />
                         <ul className='post-info'>
                             <li className='post-id'>{post.userId.name}</li>

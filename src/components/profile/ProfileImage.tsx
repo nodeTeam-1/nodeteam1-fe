@@ -9,22 +9,22 @@ interface ProfileImageProps {
 const ProfileImage: React.FC<ProfileImageProps> = ({ userId }) => {
     const { data, isLoading, isError } = useUserProfile(userId);
     console.log(data, isLoading, isError);
-    /*
-    if (isLoading) {
-        return <div className='profile-image'>Loading...</div>;
-    }
 
-    if (isError || !data) {
-        return <div className='profile-image'>Error loading profile image</div>;
-    }
+    // if (isLoading) {
+    //     return <div className='profile-image'>Loading...</div>;
+    // }
 
-    const profileImageSrc = data.profileImage; // 프로필 이미지 URL 경로
-    */
+    // if (isError || !data) {
+    //     return <div className='profile-image'>Error loading profile image</div>;
+    // }
+
+    // const profileImageSrc = data.profileImage; // 프로필 이미지 URL 경로
+
     return (
-        <></>
-        // <div className='profile-image'>
-        //     <img src={profileImageSrc} alt={`${data.name}'s profile`} />
-        // </div>
+        <div className='profile-image'>
+            <img src='' alt='s profile' />
+            {/* <img src={profileImageSrc} alt={`${data.name}'s profile`} /> */}
+        </div>
     );
 };
 
