@@ -30,7 +30,7 @@ export interface PostResponse {
 
 // Posts 목록 가져오기
 export const getPostsQuery = (page: number, name: string, pageSize: number) => {
-    const path = `/api/posts`;
+    const path = `/post`;
     return useQuery<AxiosResponse<PostResponse>>({
         queryKey: ['getPosts', page, name, pageSize],
         queryFn: () => getAsync(`${path}?page=${page}&name=${name}&pageSize=${pageSize}`)
@@ -39,7 +39,7 @@ export const getPostsQuery = (page: number, name: string, pageSize: number) => {
 
 // Post 상세 정보 가져오기
 export const getPostDetailQuery = (postId: string) => {
-    const path = `/api/posts/${postId}`;
+    const path = `/post/${postId}`;
     return useQuery<AxiosResponse<PostData>>({
         queryKey: ['getPostDetail', postId],
         queryFn: () => getAsync(path)
@@ -48,7 +48,7 @@ export const getPostDetailQuery = (postId: string) => {
 
 // Post 생성
 export const createPostMutation = (): UseMutationResult<AxiosResponse<PostData>, unknown, PostData, unknown> => {
-    const path = `/api/posts`;
+    const path = `/post`;
     return useMutation<AxiosResponse<PostData>, unknown, PostData>({
         mutationFn: (data: PostData) => postAsync(path, data)
     });
@@ -56,7 +56,7 @@ export const createPostMutation = (): UseMutationResult<AxiosResponse<PostData>,
 
 // Post 업데이트
 export const updatePostMutation = (): UseMutationResult<AxiosResponse<PostData>, unknown, PostData, unknown> => {
-    const path = `/api/posts`;
+    const path = `/post`;
     return useMutation<AxiosResponse<PostData>, unknown, PostData>({
         mutationFn: (data: PostData) => postAsync(path, data)
     });
@@ -64,7 +64,7 @@ export const updatePostMutation = (): UseMutationResult<AxiosResponse<PostData>,
 
 // Post 삭제
 export const deletePostMutation = (postId: string): UseMutationResult<AxiosResponse<void>, unknown, void, unknown> => {
-    const path = `/api/posts/${postId}`;
+    const path = `/post/${postId}`;
     return useMutation<AxiosResponse<void>, unknown, void>({
         mutationFn: () => postAsync(path, {})
     });
@@ -74,7 +74,7 @@ export const deletePostMutation = (postId: string): UseMutationResult<AxiosRespo
 export const createPostLikeMutation = (
     postId: string
 ): UseMutationResult<AxiosResponse<void>, unknown, void, unknown> => {
-    const path = `/api/posts/like/${postId}`;
+    const path = `/post/like/${postId}`;
     return useMutation<AxiosResponse<void>, unknown, void>({
         mutationFn: () => postAsync(path, {})
     });
@@ -84,7 +84,7 @@ export const createPostLikeMutation = (
 export const deletePostLikeMutation = (
     postId: string
 ): UseMutationResult<AxiosResponse<void>, unknown, void, unknown> => {
-    const path = `/api/posts/like/${postId}`;
+    const path = `/post/like/${postId}`;
     return useMutation<AxiosResponse<void>, unknown, void>({
         mutationFn: () => postAsync(path, {})
     });

@@ -1,4 +1,4 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getAsync } from '../utils/api/methods';
 import { AxiosResponse } from 'axios';
 
@@ -27,6 +27,7 @@ interface UserProfile {
 export const useUserProfile = (userId: string) => {
     return useQuery<AxiosResponse<UserProfile>>({
         queryKey: ['tokenLogin', userId],
-        queryFn: () => getAsync(`/api/user${userId}`)
+        queryFn: () => getAsync(`/user/${userId}`),
+        retry: 0
     });
 };
