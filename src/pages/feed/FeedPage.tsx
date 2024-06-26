@@ -3,11 +3,14 @@ import ProfileCard from '../../components/profile/ProfileCard';
 import PostImageContainer from '../../components/postImage/PostImageContainer';
 import AddPostForm from '../../components/addPostForm/AddPostForm';
 import Modal from '../../components/modal/Modal';
+import { getProfile } from '../../hooks/useProfileHooks';
+import { useUserStore } from '../../store/userStore';
 import './feed.scss';
 
-const MyFeedPage: React.FC = () => {
+const FeedPage: React.FC = () => {
     const [close, setClose] = useState(false);
     const [selectedTab, setSelectedTab] = useState<number>(0);
+    const { userId } = useUserStore();
 
     const handleTabClick = (index: number) => {
         setSelectedTab(index);
@@ -19,9 +22,20 @@ const MyFeedPage: React.FC = () => {
         { title: '태그됨', content: <PostImageContainer src={''} alt={''} /> }
     ];
 
+    const { data, isLoading, isError } = getProfile(userId);
+    console.log('getProfile data', data?.data.user, isLoading, isError);
+
+    if (isLoading) {
+        return <div className='profile-image'>Loading...</div>;
+    }
+
+    if (isError || !data) {
+        return <div className='profile-image'>Error loading profile image</div>;
+    }
+
     return (
         <div className='my-feed-page'>
-            <ProfileCard />
+            <ProfileCard profileData={data.data.user} />
             <div className='btn btn-add-post' onClick={() => setClose(true)}>
                 포스트 올리기
             </div>
@@ -47,4 +61,4 @@ const MyFeedPage: React.FC = () => {
     );
 };
 
-export default MyFeedPage;
+export default FeedPage;
