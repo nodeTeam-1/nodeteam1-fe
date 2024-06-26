@@ -1,5 +1,5 @@
 import React from 'react';
-import { getProfile } from '../../hooks/useUserProfile';
+import { getProfile } from '../../hooks/useProfileHooks';
 import './profile.scss';
 
 interface ProfileImageProps {

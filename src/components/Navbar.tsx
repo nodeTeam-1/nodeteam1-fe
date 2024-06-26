@@ -10,11 +10,11 @@ import { MdOutlineLogout } from 'react-icons/md';
 import ProfileImage from './profile/ProfileImage';
 
 const Navbar: React.FC = () => {
-    const { user, setUser } = useUserStore();
-    console.log('user', user);
+    const { userId, setUserId } = useUserStore();
+    console.log('userId', userId);
 
     const logoutClick = () => {
-        setUser('');
+        setUserId('');
         sessionStorage.removeItem('token');
     };
 

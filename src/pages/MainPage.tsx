@@ -8,16 +8,16 @@ import { useUserStore } from '../store/userStore';
 
 const MainPage: React.FC = () => {
     const navigate = useNavigate();
-    const { user } = useUserStore();
+    const { userId } = useUserStore();
     const { data, isLoading, isError } = getPostsQuery(1, '', 10); // 기본값으로 사용
     console.log('getPostsQuery data', data?.data.data);
 
     useEffect(() => {
-        if (!user) {
+        if (!userId) {
             console.log('navigate /user/login');
             navigate('/user/login');
         }
-    }, [user]);
+    }, [userId]);
 
     if (isLoading) {
         return <div>Loading...</div>;

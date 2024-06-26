@@ -10,13 +10,13 @@ interface AppLayoutProps {
 }
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-    const { setUser } = useUserStore();
+    const { setUserId } = useUserStore();
     //token으로 로그인 시도
     const { data, isLoading } = tokenLoginQuery('/user/info');
 
     useEffect(() => {
         if (!isLoading && data) {
-            setUser(data?.data.user.name);
+            setUserId(data?.data.user.name);
         }
     }, [isLoading, data]);
 

@@ -12,7 +12,7 @@ interface FormData {
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
-    const { user, setUser } = useUserStore();
+    const { userId, setUserId } = useUserStore();
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: ''
@@ -52,14 +52,14 @@ const LoginPage: React.FC = () => {
     useEffect(() => {
         if (mutation.isSuccess && mutation.data && mutation.data.status === 200) {
             console.log('Mutation successful:', mutation.data);
-            setUser(mutation.data.data.user.name);
+            setUserId(mutation.data.data.user.name);
             sessionStorage.setItem("token", mutation.data.data.token);
             navigate('/');
         }
-        if (user) {
+        if (userId) {
             navigate('/');
         }
-    }, [mutation.isSuccess, mutation.data, user, navigate]);
+    }, [mutation.isSuccess, mutation.data, userId, navigate]);
 
     return (
         <div className='user-page'>
