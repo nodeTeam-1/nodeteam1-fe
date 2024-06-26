@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PostCardContainer from '../components/postCard/PostCardContainer';
+import { getPostsQuery } from './../hooks/usePostHook';
 import './MainPage.scss';
 
 import { useUserStore } from '../store/userStore';
@@ -8,20 +9,31 @@ import { useUserStore } from '../store/userStore';
 const MainPage: React.FC = () => {
     const navigate = useNavigate();
     const { user } = useUserStore();
-    /* 
-    User가 로그인 되어있다면
-        있다면 메인페이지 바로 이용가능.
-        없다면 로그인 페이지로 강제 이동.
-    */
+    const { data, isLoading, isError } = getPostsQuery(1, '', 10); // 기본값으로 사용
+    console.log('getPostsQuery data', data?.data.data);
+
     useEffect(() => {
         if (!user) {
             console.log('navigate /user/login');
             navigate('/user/login');
         }
     }, [user]);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError || !data?.data.data) {
+        return <div>Error loading posts</div>;
+    }
+
+    if (data.data.data.length === 0) {
+        return <div>No posts available</div>;
+    }
+
     return (
         <div className='main-page'>
-            <PostCardContainer />
+            <PostCardContainer posts={data.data.data} />
         </div>
     );
 };
