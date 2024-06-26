@@ -1,0 +1,129 @@
+{
+    "dummyList": [
+        {
+            "userId": {
+                "_id": "60d0fe4f5311236168a109ca",
+                "name": "Alice",
+                "profileImage": "https://example.com/images/alice.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 1",
+            "replies": [
+                {
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109cb",
+                        "name": "Bob",
+                        "profileImage": "https://example.com/images/bob.jpg"
+                    },
+                    "message": "This is a reply to comment 1"
+                },
+                {
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109cc",
+                        "name": "Charlie",
+                        "profileImage": "https://example.com/images/charlie.jpg"
+                    },
+                    "message": "Another reply to comment 1"
+                }
+            ],
+            "likeCount": 10
+        },
+        {
+            "userId": {
+                "_id": "60d0fe4f5311236168a109cb",
+                "name": "Bob",
+                "profileImage": "https://example.com/images/bob.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 2",
+            "replies": [
+                {
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109ca",
+                        "name": "Alice",
+                        "profileImage": "https://example.com/images/alice.jpg"
+                    },
+                    "message": "This is a reply to comment 2",
+                    "isDeleted": false
+                }
+            ],
+            "likeCount": 5
+        },
+        {
+            "userId": {
+                "_id": "60d0fe4f5311236168a109cc",
+                "name": "Charlie",
+                "profileImage": "https://example.com/images/charlie.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 3",
+            "replies": [
+                {
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109cb",
+                        "name": "Bob",
+                        "profileImage": "https://example.com/images/bob.jpg"
+                    },
+                    "message": "This is a reply to comment 3"
+                },
+                {
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109ca",
+                        "name": "Alice",
+                        "profileImage": "https://example.com/images/alice.jpg"
+                    },
+                    "message": "Another reply to comment 3"
+                }
+            ],
+            "likeCount": 8
+        },
+        {
+            "userId": {
+                "_id": "60d0fe4f5311236168a109ca",
+                "name": "Alice",
+                "profileImage": "https://example.com/images/alice.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 4",
+            "replies": [
+                {
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109cb",
+                        "name": "Bob",
+                        "profileImage": "https://example.com/images/bob.jpg"
+                    },
+                    "message": "This is a reply to comment 4"
+                }
+            ],
+            "likeCount": 2
+        },
+        {
+            "userId": {
+                "_id": "60d0fe4f5311236168a109cb",
+                "name": "Bob",
+                "profileImage": "https://example.com/images/bob.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 5",
+            "replies": [
+                {
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109cc",
+                        "name": "Charlie",
+                        "profileImage": "https://example.com/images/charlie.jpg"
+                    },
+                    "message": "This is a reply to comment 5"
+                },
+                {
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109ca",
+                        "name": "Alice",
+                        "profileImage": "https://example.com/images/alice.jpg"
+                    },
+                    "message": "Another reply to comment 5"
+                }
+            ],
+            "likeCount": 7
+        }
+    ]
+}

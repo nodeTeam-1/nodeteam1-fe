@@ -3,10 +3,10 @@
     max-width: 768px;
     margin: 0 auto;
 
-        .btn-add-post {
-            width: 100%;
-            margin: 10px 0;
-        }
+    .btn-add-post {
+        width: 100%;
+        margin: 10px 0;
+    }
 
     .tab-menu {
         .tabs {
@@ -24,9 +24,7 @@
                     color: #000;
                     font-weight: bold;
                 }
-
             }
-
         }
     }
 }
@@ -48,7 +46,6 @@
 }
 
 @media (max-width: 768px) {
-
     .feed-detail-page {
         display: flex;
         flex-direction: column;
@@ -61,5 +58,4 @@
             width: 100%;
         }
     }
-
 }
