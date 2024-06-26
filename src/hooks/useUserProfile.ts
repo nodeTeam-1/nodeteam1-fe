@@ -19,15 +19,24 @@ interface UserProfile {
     updatedAt: Date;
 }
 
-// const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
-//     const { data } = await axios.get(`/user/${userId}`);
-//     return data;
-// };
+interface UserProfileResponse {
+    user: UserProfile;
+}
 
-export const useUserProfile = (userId: string) => {
-    return useQuery<AxiosResponse<UserProfile>>({
+// 프로필 정보 가져오기
+export const getProfile = (userId: string) => {
+    return useQuery<AxiosResponse<UserProfileResponse>>({
+        queryKey: ['getProfile', userId],
+        queryFn: () => getAsync(`/user/profile/${userId}`),
+        retry: 0
+    });
+};
+
+// 내 프로필 정보 가져오기
+export const getMyProfile = (userId: string) => {
+    return useQuery<AxiosResponse<UserProfileResponse>>({
         queryKey: ['tokenLogin', userId],
-        queryFn: () => getAsync(`/user/${userId}`),
+        queryFn: () => getAsync(`/user/info`),
         retry: 0
     });
 };
