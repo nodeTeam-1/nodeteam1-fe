@@ -36,7 +36,7 @@ export const getProfile = (userId: string) => {
 export const getMyProfile = (userId: string) => {
     return useQuery<AxiosResponse<UserProfileResponse>>({
         queryKey: ['tokenLogin', userId],
-        queryFn: () => getAsync(`/user/info`),
+        queryFn: () => getAsync(`/user/profile`),
         retry: 0
     });
 };

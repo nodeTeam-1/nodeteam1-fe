@@ -8,8 +8,7 @@ interface ProfileImageProps {
 
 const ProfileImage: React.FC<ProfileImageProps> = ({ userId }) => {
     const { data, isLoading, isError } = getProfile(userId);
-    console.log('getProfile data', data?.data, isLoading, isError);
-    console.log('profileImage', data?.data.user);
+    console.log('getProfile data', data?.data.user, isLoading, isError);
 
     if (isLoading) {
         return <div className='profile-image'>Loading...</div>;
@@ -19,7 +18,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ userId }) => {
         return <div className='profile-image'>Error loading profile image</div>;
     }
 
-    const profileImageSrc = data?.data.user.profileImage; // 프로필 이미지 URL 경로
+    const profileImageSrc = data?.data.user.profileImage;
 
     return (
         <div className='profile-image'>
