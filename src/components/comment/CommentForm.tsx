@@ -32,7 +32,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ onAddComment }) => {
         <form onSubmit={handleSubmit(onSubmit)} className='form-container form-container-comment'>
             <section className='comment-profile-section'>
                 <div className='comment-none-profile'>
-                    <FaCircleUser size={36} color={'#dedede'} />
+                    <FaCircleUser size={36} color={'#e8e8e8'} />
                 </div>
             </section>
             <div className='comment-textarea'>
