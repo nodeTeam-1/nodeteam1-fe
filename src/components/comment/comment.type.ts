@@ -10,6 +10,7 @@ interface IReply {
 }
 
 export interface ICommentData {
+    _id: string;
     userId: IUser;
     postId: string;
     content: string;

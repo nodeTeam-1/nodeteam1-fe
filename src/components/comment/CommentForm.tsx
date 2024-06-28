@@ -37,10 +37,14 @@ const CommentForm: React.FC<CommentFormProps> = ({ onAddComment }) => {
         }
     };
 
+    // card와 연동데잍 필요 답글을 눌렀을때
+    // 답글 취소
+    // zustand로 작성 name, userId, commentId
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='form-container form-wrapper'>
             <div className='form-inner-section'>
-                <FaCircleUser size={40} color={'#e8e8e8'} />
+                <FaCircleUser size={36} color={'#e8e8e8'} />
                 <textarea
                     id='comment'
                     {...register('comment', { required: '댓글이 입력되지 않았습니다.' })}
