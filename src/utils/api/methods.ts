@@ -22,6 +22,6 @@ export const putAsync = async (path: string, data: any): Promise<AxiosResponse<a
 };
 
 // DELETE
-export const deleteAsync = async (path: string, data: any): Promise<AxiosResponse<any>> => {
-    return await api.delete(`${path}`, data);
+export const deleteAsync = async (path: string): Promise<AxiosResponse<any>> => {
+    return await api.delete(`${path}`);
 };

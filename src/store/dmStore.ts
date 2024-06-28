@@ -8,11 +8,14 @@ interface UserId {
 interface Message {
     userId: UserId;
     message: string;
+    messageIndex: number;
 }
 
 interface DmStoreType {
     currentMessage: Message;
+    deleteIndex: number | null;
     setCurrentMessage: (value: Message) => void;
+    setDeleteIndex: (value: number) => void;
 }
 
 export const useDmStore = create<DmStoreType>((set) => ({
@@ -21,9 +24,14 @@ export const useDmStore = create<DmStoreType>((set) => ({
             _id: '',
             name: ''
         },
-        message: ''
+        message: '',
+        messageIndex: 0
     },
+    deleteIndex: null,
     setCurrentMessage: (value) => {
         set(() => ({ currentMessage: value }));
+    },
+    setDeleteIndex: (value) => {
+        set(() => ({ deleteIndex: value }));
     }
 }));

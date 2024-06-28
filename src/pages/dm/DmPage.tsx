@@ -12,12 +12,13 @@ interface User {
 interface Message {
     userId: User;
     message: string;
+    messageIndex: number;
     isDeleted: boolean;
 }
 
 export const DmPage = () => {
     const { userId, userName } = useUserStore();
-    const { currentMessage } = useDmStore();
+    const { currentMessage, deleteIndex } = useDmStore();
     const [sendMsg, setSendMsg] = useState<string>('');
     const [msgStorage, setMsgStorage] = useState<Message[]>([]);
     const { id } = useParams();
@@ -32,7 +33,7 @@ export const DmPage = () => {
 
         // msg 전송 로직
         if (id) {
-            sendMutation.mutate({ reciveId: id, message: sendMsg });
+            sendMutation.mutate({ reciveId: id, message: sendMsg, messageIndex: msgStorage.length });
         }
         setMsgStorage([
             ...msgStorage,
@@ -42,6 +43,7 @@ export const DmPage = () => {
                     name: userName
                 },
                 message: sendMsg,
+                messageIndex: msgStorage.length,
                 isDeleted: false
             }
         ]);
@@ -50,10 +52,16 @@ export const DmPage = () => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSendMsg(event.target.value);
     };
-    const chattingClick = (user: User, msg: string) => {
-        console.log(msgStorage, setQueryStat);
+
+    const chattingDeleteClick = (user: User, msg: string, messageIndex: number) => {
         if (window.confirm(`[${user.name}님] ${msg}\n해당 대화를 삭제하시겠습니까?`) && id) {
-            deleteMutation.mutate({ reciveId: id, messageId: sendMsg });
+            deleteMutation.mutate({ reciveId: id, messageIndex });
+
+            setMsgStorage((prevMessages) =>
+                prevMessages.map((msg) =>
+                    msg.messageIndex === messageIndex ? { ...msg, isDeleted: true, message: '삭제되었습니다.' } : msg
+                )
+            );
         }
     };
 
@@ -70,12 +78,22 @@ export const DmPage = () => {
         setMsgStorage([...msgStorage, { ...currentMessage, isDeleted: false }]);
     }, [currentMessage]);
 
+    useEffect(() => {
+        if (deleteIndex !== undefined || null) {
+            setMsgStorage((prevMessages) =>
+                prevMessages.map((msg) =>
+                    msg.messageIndex === deleteIndex ? { ...msg, isDeleted: true, message: '삭제되었습니다.' } : msg
+                )
+            );
+        }
+    }, [deleteIndex]);
+
     return (
         <div className='App'>
             <h1>Server-Sent Events with React</h1>
             <ul>
                 {msgStorage?.map((msg: Message, index: number) => (
-                    <li key={index} onClick={() => chattingClick(msg.userId, msg.message)}>
+                    <li key={index} onClick={() => chattingDeleteClick(msg.userId, msg.message, msg.messageIndex)}>
                         <b>[{msg.userId.name} 님]</b> {msg.message}
                     </li>
                 ))}

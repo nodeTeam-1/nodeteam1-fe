@@ -12,7 +12,7 @@ interface AppLayoutProps {
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     let sseEventSource: EventSource;
     const { userId, userDelete } = useUserStore();
-    const { setCurrentMessage } = useDmStore();
+    const { setCurrentMessage, setDeleteIndex } = useDmStore();
     useEffect(() => {
         console.log(userId);
         if (userId) {
@@ -20,8 +20,13 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
             sseEventSource.onmessage = (event) => {
                 const newMessage = JSON.parse(event.data);
                 console.log(newMessage);
-                setCurrentMessage(newMessage);
+                if (newMessage.type === 'send') {
+                    setCurrentMessage(newMessage);
+                } else if (newMessage.type === 'delete') {
+                    setDeleteIndex(newMessage.messageIndex);
+                }
             };
+
             sseEventSource.onerror = (error) => {
                 console.error('EventSource failed:', error);
                 sseEventSource.close();

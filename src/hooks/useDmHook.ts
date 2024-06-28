@@ -1,18 +1,19 @@
 /* eslint-disable */
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { deleteAsync, getAsync, postAsync } from '../utils/api/methods';
+import { getAsync, postAsync, putAsync } from '../utils/api/methods';
 import { AxiosResponse } from 'axios';
 
 // SendData 인터페이스 정의
 export interface SendData {
     reciveId: string;
     message: string;
+    messageIndex: number;
 }
 
 // SendData 인터페이스 정의
 export interface DeleteData {
     reciveId: string;
-    messageId: string;
+    messageIndex: number;
 }
 
 // DmPage: DM 내역 가져오기
@@ -35,6 +36,6 @@ export const sendDmMutation = () => {
 // DmPage: DM 삭제
 export const deleteDmMutation = () => {
     return useMutation<AxiosResponse<any>, unknown, DeleteData>({
-        mutationFn: (data: DeleteData) => deleteAsync(`/dm`, data),
+        mutationFn: (data: DeleteData) => putAsync(`/dm`, data),
     });
 };
