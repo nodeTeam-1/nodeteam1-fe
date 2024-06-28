@@ -1,5 +1,5 @@
 import React from 'react';
-import { getProfile } from '../../hooks/useProfileHooks';
+import { getProfileQuery } from '../../hooks/useProfileHooks';
 import './profile.scss';
 
 interface ProfileImageProps {
@@ -7,8 +7,8 @@ interface ProfileImageProps {
 }
 
 const ProfileImage: React.FC<ProfileImageProps> = ({ userId }) => {
-    const { data, isLoading, isError } = getProfile(userId);
-    console.log('getProfile data', data?.data.user, isLoading, isError);
+    const { data, isLoading, isError } = getProfileQuery(userId);
+    //console.log('getProfile data', data?.data.user, isLoading, isError);
 
     if (isLoading) {
         return <div className='profile-image'>Loading...</div>;

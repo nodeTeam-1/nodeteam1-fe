@@ -5,6 +5,8 @@ import RegisterPage from '../../pages/user/RegisterPage';
 import FeedPage from '../../pages/feed/FeedPage';
 import FeedDetailPage from '../../pages/feed/FeedDetailPage';
 import MainPage from '../../pages/MainPage';
+import { DmPage } from '../../pages/dm/DmPage';
+import { UserList } from '../../pages/user/UserList';
 
 const MainRoutes: React.FC = () => {
     return (
@@ -14,6 +16,8 @@ const MainRoutes: React.FC = () => {
             <Route path='/feed/:id/:id' element={<FeedDetailPage />} />
             <Route path='/user/login' element={<LoginPage />} />
             <Route path='/user/register' element={<RegisterPage />} />
+            <Route path='/userList' element={<UserList />} />
+            <Route path='/dm/:id' element={<DmPage />} />
         </Routes>
     );
 };

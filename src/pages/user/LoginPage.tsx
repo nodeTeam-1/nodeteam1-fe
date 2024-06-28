@@ -4,6 +4,7 @@ import './user.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { userLoginMutation } from '../../hooks/useLoginHook';
 import { useUserStore } from '../../store/userStore';
+import { tokenLoginQuery } from '../../hooks/useLoginHook';
 
 interface FormData {
     email: string;
@@ -12,12 +13,34 @@ interface FormData {
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
-    const { userId, setUserId } = useUserStore();
+    const { userId, setUserId, setUserName } = useUserStore();
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: ''
     });
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+    //token으로 로그인 시도
+    const { data, isLoading } = tokenLoginQuery('/user/profile');
+
+    // 사용자 로그인 뮤테이션 훅 호출
+    const mutation = userLoginMutation('/auth/login');
+
+    useEffect(() => {
+        console.log('data', data, 'isLoading', isLoading);
+        if (!isLoading && data) {
+            setUserId(data?.data.user._id);
+            setUserName(data?.data.user.name);
+            navigate('/');
+        }else if (mutation.isSuccess && mutation.data && mutation.data.status === 200) { // 뮤테이션 성공 시 메인 페이지로 이동
+            console.log('Mutation successful:', mutation.data);
+            setUserId(mutation.data.data.user._id);
+            setUserName(mutation.data.data.user.name);
+            sessionStorage.setItem("token", mutation.data.data.token);
+            navigate('/');
+        }
+    }, [data, isLoading, mutation.isSuccess, mutation.data, userId, navigate]);
+
 
     // 입력 필드 변경 핸들러
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -26,9 +49,6 @@ const LoginPage: React.FC = () => {
             [event.target.name]: event.target.value
         });
     };
-
-    // 사용자 로그인 뮤테이션 훅 호출
-    const mutation = userLoginMutation('/auth/login');
 
     // 폼 제출 핸들러
     const formSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -47,19 +67,6 @@ const LoginPage: React.FC = () => {
             }
         });
     };
-
-    // 뮤테이션 성공 시 메인 페이지로 이동
-    useEffect(() => {
-        if (mutation.isSuccess && mutation.data && mutation.data.status === 200) {
-            console.log('Mutation successful:', mutation.data);
-            setUserId(mutation.data.data.user.name);
-            sessionStorage.setItem("token", mutation.data.data.token);
-            navigate('/');
-        }
-        if (userId) {
-            navigate('/');
-        }
-    }, [mutation.isSuccess, mutation.data, userId, navigate]);
 
     return (
         <div className='user-page'>

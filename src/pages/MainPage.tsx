@@ -8,16 +8,17 @@ import { useUserStore } from '../store/userStore';
 
 const MainPage: React.FC = () => {
     const navigate = useNavigate();
-    const { userId } = useUserStore();
+    const { userId, userName } = useUserStore();
     const { data, isLoading, isError } = getPostsQuery(1, '', 10); // 기본값으로 사용
     console.log('getPostsQuery data', data?.data.data);
 
     useEffect(() => {
+        console.log('userId', userId);
         if (!userId) {
             console.log('navigate /user/login');
             navigate('/user/login');
         }
-    }, [userId]);
+    }, [userId, navigate]);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -33,6 +34,9 @@ const MainPage: React.FC = () => {
 
     return (
         <div className='main-page'>
+            <h1>
+                {userId} | {userName}
+            </h1>
             <PostCardContainer posts={data.data.data} />
         </div>
     );

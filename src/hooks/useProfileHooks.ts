@@ -24,7 +24,7 @@ interface UserProfileResponse {
 }
 
 // 프로필 정보 가져오기
-export const getProfile = (userId: string) => {
+export const getProfileQuery = (userId: string) => {
     return useQuery<AxiosResponse<UserProfileResponse>>({
         queryKey: ['getProfile', userId],
         queryFn: () => getAsync(`/user/profile/${userId}`),
@@ -35,7 +35,7 @@ export const getProfile = (userId: string) => {
 // 내 프로필 정보 가져오기
 export const getMyProfile = (userId: string) => {
     return useQuery<AxiosResponse<UserProfileResponse>>({
-        queryKey: ['tokenLogin', userId],
+        queryKey: ['getMyProfile', userId],
         queryFn: () => getAsync(`/user/profile`),
         retry: 0
     });

@@ -3,7 +3,7 @@ import ProfileCard from '../../components/profile/ProfileCard';
 import PostImageContainer from '../../components/postImage/PostImageContainer';
 import AddPostForm from '../../components/addPostForm/AddPostForm';
 import Modal from '../../components/modal/Modal';
-import { getProfile } from '../../hooks/useProfileHooks';
+import { getProfileQuery } from '../../hooks/useProfileHooks';
 import { useUserStore } from '../../store/userStore';
 import './feed.scss';
 
@@ -22,8 +22,8 @@ const FeedPage: React.FC = () => {
         { title: '태그됨', content: <PostImageContainer src={''} alt={''} /> }
     ];
 
-    const { data, isLoading, isError } = getProfile(userId);
-    console.log('getProfile data', data?.data.user, isLoading, isError);
+    const { data, isLoading, isError } = getProfileQuery(userId);
+    console.log('getProfileQuery data', data?.data.user, isLoading, isError);
 
     if (isLoading) {
         return <div className='profile-image'>Loading...</div>;
