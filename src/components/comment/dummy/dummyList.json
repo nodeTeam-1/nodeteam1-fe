@@ -1,0 +1,133 @@
+{
+    "dummyList": [
+        {
+            "_id": "1",
+            "userId": {
+                "_id": "60d0fe4f5311236168a109ca",
+                "name": "Alice",
+                "profileImage": "https://example.com/images/alice.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 1 This is comment 1 This is comment 1 This is comment 1 This is comment 1 This is comment 1This is comment 1 This is comment 1This is comment 1 This is comment 1 This is comment 1 This is comment 1 This is comment 1",
+            "replies": [
+                {
+                    "_id": "6",
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109cb",
+                        "name": "Bob",
+                        "profileImage": "https://example.com/images/bob.jpg"
+                    },
+                    "message": "This is a reply to comment 1",
+                    "createdAt": "2024-06-28T12:34:56Z"
+                },
+                {
+                    "_id": "7",
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109cc",
+                        "name": "Charlie",
+                        "profileImage": "https://example.com/images/charlie.jpg"
+                    },
+                    "message": "Another reply to comment 1",
+                    "createdAt": "2024-06-28T11:34:56Z"
+                }
+            ],
+            "likeCount": 10,
+            "createdAt": "2024-06-28T12:34:56Z"
+        },
+        {
+            "_id": "2",
+            "userId": {
+                "_id": "60d0fe4f5311236168a109cb",
+                "name": "Bob",
+                "profileImage": "https://example.com/images/bob.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 2",
+            "replies": [
+                {
+                    "_id": "8",
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109ca",
+                        "name": "Alice",
+                        "profileImage": "https://example.com/images/alice.jpg"
+                    },
+                    "message": "This is a reply to comment 2",
+                    "createdAt": "2024-06-28T10:34:56Z"
+                }
+            ],
+            "likeCount": 5,
+            "createdAt": "2024-06-26T12:34:56Z"
+        },
+        {
+            "_id": "3",
+            "userId": {
+                "_id": "60d0fe4f5311236168a109cc",
+                "name": "Charlie",
+                "profileImage": "https://example.com/images/charlie.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 3",
+            "replies": [
+                {
+                    "_id": "9",
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109cb",
+                        "name": "Bob",
+                        "profileImage": "https://example.com/images/bob.jpg"
+                    },
+                    "message": "This is a reply to comment 3",
+                    "createdAt": "2024-06-28T09:34:56Z"
+                },
+                {
+                    "_id": "10",
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109ca",
+                        "name": "Alice",
+                        "profileImage": "https://example.com/images/alice.jpg"
+                    },
+                    "message": "Another reply to comment 3",
+                    "createdAt": "2024-06-28T08:34:56Z"
+                }
+            ],
+            "likeCount": 8,
+            "createdAt": "2024-06-21T12:34:56Z"
+        },
+        {
+            "_id": "4",
+            "userId": {
+                "_id": "60d0fe4f5311236168a109ca",
+                "name": "Alice",
+                "profileImage": "https://example.com/images/alice.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 4",
+            "replies": [
+                {
+                    "_id": "11",
+                    "userId": {
+                        "_id": "60d0fe4f5311236168a109cb",
+                        "name": "Bob",
+                        "profileImage": "https://example.com/images/bob.jpg"
+                    },
+                    "message": "This is a reply to comment 4",
+                    "createdAt": "2024-06-28T07:34:56Z"
+                }
+            ],
+            "likeCount": 2,
+            "createdAt": "2024-02-17T12:34:56Z"
+        },
+        {
+            "_id": "5",
+            "userId": {
+                "_id": "60d0fe4f5311236168a109cb",
+                "name": "Bob",
+                "profileImage": "https://example.com/images/bob.jpg"
+            },
+            "postId": "60d0fe4f5311236168a109c7",
+            "content": "This is comment 5",
+            "replies": [],
+            "likeCount": 7,
+            "createdAt": "2022-05-30T12:34:56Z"
+        }
+    ]
+}

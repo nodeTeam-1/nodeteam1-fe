@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import ToastMessage from '../components/ToastMessage';
 import { useUserStore } from '../store/userStore';
 import { useDmStore } from '../store/dmStore';
+import './appLayout.scss';
 
 interface AppLayoutProps {
     children: ReactNode;
@@ -14,7 +15,6 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     const { userId, userDelete } = useUserStore();
     const { setCurrentMessage, setDeleteIndex } = useDmStore();
     useEffect(() => {
-        console.log(userId);
         if (userId) {
             sseEventSource = new EventSource(`http://localhost:5002/events/${userId}`);
             sseEventSource.onmessage = (event) => {
@@ -41,11 +41,11 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     }, [userId]);
 
     return (
-        <>
+        <div className='layout'>
             <ToastMessage />
-            {children}
+            <div className='layout-children'>{children}</div>
             <Navbar />
-        </>
+        </div>
     );
 };
 

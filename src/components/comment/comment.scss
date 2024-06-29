@@ -1,0 +1,141 @@
+.comment-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-list {
+    height: 100%;
+    flex: 1;
+}
+
+.comment-card {
+    display: flex;
+    justify-content: space-between;
+    //border: 1px solid black;
+    padding: 8px;
+    margin-top: 8px;
+}
+
+.comment-card-like .comment-card-profile {
+    width: 100px;
+}
+
+.comment-card-profile img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.comment-card-center-area {
+    flex: 1;
+}
+
+.comment-card-nav {
+    display: flex;
+    font-size: 14px;
+    padding: 6px 8px 4px 8px;
+}
+
+.comment-card-nav-btn {
+    margin-right: 16px;
+    font-size: 12px;
+    font-weight: bolder;
+    color: #737373;
+}
+
+.comment-card-comment {
+    flex: 1;
+    margin: 2px 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: fit-content;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.comment-card-comment a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.form-wrapper {
+    position: relative;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-top: 1px solid rgb(185, 185, 185);
+    border-bottom: 1px solid rgb(185, 185, 185);
+    justify-content: space-between;
+    //align-items: center;
+    padding: 8px;
+    height: 112px;
+}
+
+.form-inner-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: gray;
+    border: none;
+    background-color: #fff;
+    height: max-content;
+    overflow: hidden;
+}
+
+.form-middle-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-middle-reply {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 12px;
+    padding-bottom: 4px;
+    font-size: 14px;
+    border-bottom: 1px solid #737373;
+    color: #737373;
+}
+
+.form-inner-section textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    margin: 4px 8px;
+    padding: 0px 4px;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+.form-textarea-submit-area {
+    width: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.form-textarea-submit {
+    border: none;
+    background-color: inherit;
+    color: blue;
+    font-size: 16px;
+    height: 40px;
+}
+
+.comment-reply-area {
+    font-size: 12px;
+    color: #737373;
+    margin-left: 8px;
+    margin-top: 4px;
+}
