@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useUserStore } from '../store/userStore'; // 사용자 상태 관리
 import { useLocation } from 'react-router'; // 현재 경로 정보를 얻기 위해 사용
 import { useNavigate } from 'react-router-dom'; // 경로 이동을 위해 사용
