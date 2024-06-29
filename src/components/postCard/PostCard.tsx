@@ -23,11 +23,12 @@ interface Post {
 
 interface PostCardProps {
     post: Post;
+    onClick?: () => void; // Optional onClick prop
 }
 
-const PostCard: React.FC<PostCardProps> = ({ post }) => {
+const PostCard: React.FC<PostCardProps> = ({ post, onClick }) => {
     return (
-        <div className='post-card'>
+        <div className='post-card' onClick={onClick}>
             <PostImage key={post.title} src={post.images} alt='PostImage' />
             <PostCardAction likeCount={post.likeCount} />
             <div className='post-contents'>
