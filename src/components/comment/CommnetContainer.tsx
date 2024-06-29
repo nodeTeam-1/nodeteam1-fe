@@ -16,8 +16,8 @@ const CommnetContainer: React.FC = () => {
 
     return (
         <div className='comment-container'>
-            {/* <CommentList comments={commentList ?? []} /> */}
-            <CommentList comments={commentData} />
+            <CommentList comments={commentList ?? []} />
+            {/* <CommentList comments={commentData} /> */}
             <CommentForm />
         </div>
     );

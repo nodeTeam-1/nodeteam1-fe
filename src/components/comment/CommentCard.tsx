@@ -20,7 +20,7 @@ const CommentCard: React.FC<CommentCardProps> = ({ data }) => {
     const handleIsLike = () => {
         setIsLike(!isLike);
     };
-
+    console.log('test: ', data);
     return (
         <div className='comment-card'>
             <div className='comment-card-profile'>
