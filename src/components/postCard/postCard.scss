@@ -110,40 +110,6 @@
     .post-card-wrap {
 
 
-        .post-head {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-
-            .profile-image {
-                width: 36px;
-                height: 36px;
-                margin-right: 10px;
-                border: 1px solid #eee;
-                margin-bottom: 3px;
-            }
-
-            .post-info {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                flex-wrap: wrap;
-                flex: 1;
-
-                .post-id {}
-
-                .post-date {}
-
-                .post-location {
-                    width: 100%;
-                }
-            }
-
-            svg {
-                cursor: pointer;
-            }
-        }
-
         .post-action {}
 
         .post-card {
@@ -156,6 +122,5 @@
         }
     }
 }
-
 
 @media (max-width: 768px) {}

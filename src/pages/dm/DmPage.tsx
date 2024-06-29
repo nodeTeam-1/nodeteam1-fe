@@ -89,8 +89,8 @@ export const DmPage = () => {
     }, [deleteIndex]);
 
     return (
-        <div className='App'>
-            <h1>Server-Sent Events with React</h1>
+        <div className='page-container dm-page'>
+            <h2>Server-Sent Events with React</h2>
             <ul>
                 {msgStorage?.map((msg: Message, index: number) => (
                     <li key={index} onClick={() => chattingDeleteClick(msg.userId, msg.message, msg.messageIndex)}>
@@ -98,16 +98,14 @@ export const DmPage = () => {
                     </li>
                 ))}
             </ul>
-            <div className='user-page'>
-                <form onSubmit={formSubmit} className='form-container'>
-                    <div className='input-wrap'>
-                        <input type='text' placeholder='전송 할 메시지' value={sendMsg} onChange={handleChange} />
-                    </div>
-                    <button type='submit' className='btn btn-submit'>
-                        전송
-                    </button>
-                </form>
-            </div>
+            <form onSubmit={formSubmit} className='form-container'>
+                <div className='input-wrap'>
+                    <input type='text' placeholder='전송 할 메시지' value={sendMsg} onChange={handleChange} />
+                </div>
+                <button type='submit' className='btn btn-submit'>
+                    전송
+                </button>
+            </form>
         </div>
     );
 };

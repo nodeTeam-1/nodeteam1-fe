@@ -1,3 +1,92 @@
+.page-container {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 16px;
+    .page-title {
+        font-size: 24px;
+        font-weight: 600;
+        padding: 16px 0;
+    }
+}
+
+.user-head {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .profile-image {
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+        border: 1px solid #eee;
+        margin-bottom: 3px;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        flex: 1;
+
+        .user-name {}
+
+        .user-post-date {}
+
+        .post-location {
+            width: 100%;
+        }
+    }
+
+    svg {
+        cursor: pointer;
+    }
+}
+
+.form-container {
+    max-width: 480px;
+    margin: 0 auto;
+
+    .form-title {
+        font-size: 24px;
+        font-weight: 600;
+        padding: 16px 0;
+    }
+
+    .input-wrap {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        label {
+            width: 100%;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        input {
+            height: 36px;
+        }
+
+        input,
+        textarea {
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+
+        textarea {
+            max-height: 100px;
+            height: 100%;
+        }
+    }
+
+    .btn-wrap {
+        margin: 20px 0 0 0;
+    }
+}
+
 .btn-wrap {
     display: flex;
     align-items: center;
@@ -50,55 +139,11 @@
     }
 }
 
-.form-container {
-    max-width: 480px;
-    margin: 0 auto;
-
-    .form-title {
-        font-size: 24px;
-        font-weight: 600;
-        padding: 16px 0;
-    }
-
-    .input-wrap {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-
-        label {
-            width: 100%;
-            font-size: 14px;
-            font-weight: 700;
-            margin: 0 0 10px 0;
-        }
-
-        input {
-            height: 36px;
-        }
-
-        input,
-        textarea {
-            border: 1px solid #eee;
-            border-radius: 5px;
-        }
-
-        textarea {
-            max-height: 100px;
-            height: 100%;
-        }
-    }
-
-    .btn-wrap {
-        margin: 20px 0 0 0;
-    }
-}
-
 .w-100 {
     width: 100%;
 }
 
 .navbar {
-
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -140,6 +185,10 @@
 }
 
 @media (max-width: 768px) {
+    .page-container {
+        padding: 0 16px;
+    }
+
     .navbar {
         ul {
             li {

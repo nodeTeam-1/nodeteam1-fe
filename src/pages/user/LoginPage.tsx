@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react';
-import './user.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { userLoginMutation } from '../../hooks/useLoginHook';
 import { useUserStore } from '../../store/userStore';
 import { tokenLoginQuery } from '../../hooks/useLoginHook';
+import './user.scss';
 
 interface FormData {
     email: string;
@@ -20,7 +20,7 @@ const LoginPage: React.FC = () => {
     });
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-    //token으로 로그인 시도
+    // token으로 로그인 시도
     const { data, isLoading } = tokenLoginQuery('/user/profile');
 
     // 사용자 로그인 뮤테이션 훅 호출
@@ -34,7 +34,7 @@ const LoginPage: React.FC = () => {
             setUserProfileImage(data?.data.user.profileImage);
             setUserBio(data?.data.user.Bio);
             navigate('/');
-        }else if (mutation.isSuccess && mutation.data && mutation.data.status === 200) { // 뮤테이션 성공 시 메인 페이지로 이동
+        } else if (mutation.isSuccess && mutation.data && mutation.data.status === 200) { // 뮤테이션 성공 시 메인 페이지로 이동
             console.log('Mutation successful:', mutation.data);
             setUserId(mutation.data.data.user._id);
             setUserName(mutation.data.data.user.name);

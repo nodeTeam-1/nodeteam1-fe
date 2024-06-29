@@ -34,12 +34,11 @@ const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts }) => {
         <div className='post-card-container'>
             {posts.map((post) => (
                 <div className='post-card-wrap' key={post._id}>
-                    <div className='post-head'>
+                    <div className='user-head'>
                         <ProfileImage name={post.userId.name} profileImageSrc={post.userId.profileImage} />
-                        <ul className='post-info'>
-                            <li className='post-id'>{post.userId.name}</li>
-                            <li className='post-date'>{new Date(post.createdAt).toLocaleDateString()}</li>
-                            {/* <li className='post-location'>{post.location}</li> */}
+                        <ul className='user-info'>
+                            <li className='user-name'>{post.userId.name}</li>
+                            <li className='user-post-date'>{new Date(post.createdAt).toLocaleDateString()}</li>
                         </ul>
                         <IoIosMore />
                     </div>

@@ -6,7 +6,7 @@ import FeedPage from '../../pages/feed/FeedPage';
 import FeedDetailPage from '../../pages/feed/FeedDetailPage';
 import MainPage from '../../pages/MainPage';
 import { DmPage } from '../../pages/dm/DmPage';
-import { UserList } from '../../pages/user/UserList';
+import { UserList } from '../../pages/follow/FollowListPage';
 
 const MainRoutes: React.FC = () => {
     return (

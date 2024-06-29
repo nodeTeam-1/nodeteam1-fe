@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ProfileImage from '../../components/profile/ProfileImage';
 import { IoIosMore } from 'react-icons/io';
 import { useUserStore } from '../../store/userStore';
+import './follow.scss';
 
 interface UserInfo {
     _id: string;
@@ -22,19 +23,16 @@ export const UserList: React.FC = () => {
         navigate(`/dm/${id}`);
     };
     return (
-        <div className='user-list-container'>
+        <div className='page-container'>
+            <h2 className='page-title'>{}리스트</h2>
             {data?.data.user.map((element: UserInfo, index: number) =>
                 element._id !== userId ? (
-                    <div className='user-list-wrap' key={index}>
-                        <div className='user-list'>
-                            <ProfileImage name={element.name} profileImageSrc={element.profileImage} />
-                            <ul className='user-info' onClick={() => postClick(element._id)}>
-                                <li className='user-name'>{element.name}</li>
-                                <li className='user-bio'>BIO : {element.bio || 'bio'}</li>
-                                {/* <li className='post-location'>{post.location}</li> */}
-                            </ul>
-                            <IoIosMore />
-                        </div>
+                    <div className='user-head' key={index}>
+                        <ProfileImage name={element.name} profileImageSrc={element.profileImage} />
+                        <ul className='user-info' onClick={() => postClick(element._id)}>
+                            <li className='user-name'>{element.name}</li>
+                        </ul>
+                        <IoIosMore />
                     </div>
                 ) : null
             )}

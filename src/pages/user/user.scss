@@ -3,129 +3,14 @@
     max-width: 768px;
     margin: 0 auto;
     padding: 0 16px;
-    .text-area{
+
+    .text-area {
         margin-bottom: 10px;
     }
+
     .notice-wrap {
         margin-top: 20px;
     }
 }
 
-.user-list-container {
-    .user-list-wrap {
-
-        .user-list {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            cursor: pointer;
-
-            .profile-image {
-                width: 36px;
-                height: 36px;
-                margin-right: 10px;
-                border: 1px solid #eee;
-                margin-bottom: 3px;
-            }
-
-            .user-info {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                flex-wrap: wrap;
-                flex: 1;
-
-                .user-name {}
-
-                .user-bio {}
-
-                .user-location {
-                    width: 100%;
-                }
-            }
-
-            svg {
-                cursor: pointer;
-            }
-        }
-
-        .user-action {}
-
-        .post-card {
-            margin-bottom: 30px;
-
-            &:last-child {
-                margin-bottom: 80px;
-            }
-
-            .user-action-list {
-                height: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-
-                .user-action {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    font-size: 16px;
-                    margin-right: 10px;
-
-                    &:last-child {
-                        margin-right: 0;
-                    }
-
-                    svg {
-                        width: 24px;
-                        height: 24px;
-                        cursor: pointer;
-                    }
-
-                    &.like {
-                        span {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                        }
-                    }
-
-                    &.share {
-                        &.active {}
-                    }
-
-                    &.comment {
-                        &.active {}
-                    }
-                }
-            }
-
-            .post-contents {
-                .post-title {
-                    font-size: 16px;
-                    font-weight: 600;
-                    margin-top: 10px;
-                }
-
-                .post-content {
-                    font-size: 16px;
-                    margin-top: 10px;
-                }
-
-                .post-tags {
-                    display: flex;
-                    align-items: flex-start;
-                    justify-content: flex-start;
-                    margin-right: 6px;
-                    margin-top: 10px;
-
-                    .post-tag {
-                        &:last-child {
-                            margin-right: 0;
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-}
+@media (max-width: 768px) {}
