@@ -91,7 +91,7 @@ export const DmPage = () => {
 
     return (
         <div className='page-container dm-page'>
-            <h2 className='page-title'>{ }님과의 대화</h2>
+            <h2 className='page-title'>{}님과의 대화</h2>
             <ul>
                 {msgStorage?.map((msg: Message, index: number) => (
                     <li key={index} onClick={() => chattingDeleteClick(msg.userId, msg.message, msg.messageIndex)}>
