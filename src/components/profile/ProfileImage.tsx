@@ -1,5 +1,5 @@
 import React from 'react';
-import { getProfileQuery } from '../../hooks/useProfileHooks';
+import { getProfileQuery } from '../../hooks/useProfileHook';
 import './profile.scss';
 
 interface ProfileImageProps {
