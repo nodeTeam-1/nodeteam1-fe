@@ -6,6 +6,7 @@ import { FaCircleUser } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
 import { useCommentStore } from '../../store/commentStroe';
 import { useCommentRegister, useReplyCommentRegister } from '../../hooks/useCommentHook';
+import { getMyProfile } from '../../hooks/useProfileHooks';
 import './comment.scss';
 
 interface ICommentFormInput {
@@ -13,13 +14,16 @@ interface ICommentFormInput {
 }
 
 const CommentForm: React.FC = () => {
-    const { postId } = useParams();
+    const { id } = useParams();
     const { register, handleSubmit, reset, watch, setValue } = useForm<ICommentFormInput>();
     const { commentId, userName: targetUser, reset: targetReset } = useCommentStore();
-    const { mutate: replyRegister } = useReplyCommentRegister();
-    const { mutate: commentRegister } = useCommentRegister();
+    const { mutate: replyRegister } = useReplyCommentRegister(id ?? '');
+    const { mutate: commentRegister } = useCommentRegister(id ?? '');
+    const { data: profileResponse } = getMyProfile();
 
     const commentValue = watch('comment', '');
+
+    console.log(`profileResponse: `, profileResponse);
 
     useEffect(() => {
         autoResizeTextarea();
@@ -33,9 +37,10 @@ const CommentForm: React.FC = () => {
 
     const onSubmit: SubmitHandler<ICommentFormInput> = ({ comment }) => {
         targetUser
-            ? replyRegister({ commentId, content: comment })
-            : commentRegister({ postId: postId!, content: comment });
+            ? replyRegister({ commentId, content: comment.replace(`@${targetUser}`, '') })
+            : commentRegister({ postId: id!, content: comment });
         reset(); // 제출 후 폼 초기화
+        targetReset();
     };
 
     const autoResizeTextarea = () => {
@@ -49,9 +54,10 @@ const CommentForm: React.FC = () => {
         }
     };
 
-    // card와 연동데잍 필요 답글을 눌렀을때
-    // 답글 취소
-    // zustand로 작성 name, userId, commentId
+    const handleResetComment = () => {
+        targetReset();
+        setValue('comment', ``);
+    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='form-container form-wrapper'>
@@ -60,7 +66,7 @@ const CommentForm: React.FC = () => {
                 <div className='form-middle-area'>
                     {targetUser && (
                         <div className='form-middle-reply'>
-                            {targetUser} 님에게 답글 남기는 중 <IoClose size={16} onClick={targetReset} />
+                            {targetUser} 님에게 답글 남기는 중 <IoClose size={16} onClick={handleResetComment} />
                         </div>
                     )}
                     <textarea

@@ -125,28 +125,7 @@
             },
             "postId": "60d0fe4f5311236168a109c7",
             "content": "This is comment 5",
-            "replies": [
-                {
-                    "_id": "12",
-                    "userId": {
-                        "_id": "60d0fe4f5311236168a109cc",
-                        "name": "Charlie",
-                        "profileImage": "https://example.com/images/charlie.jpg"
-                    },
-                    "message": "This is a reply to comment 5",
-                    "createdAt": "2024-06-28T06:34:56Z"
-                },
-                {
-                    "_id": "13",
-                    "userId": {
-                        "_id": "60d0fe4f5311236168a109ca",
-                        "name": "Alice",
-                        "profileImage": "https://example.com/images/alice.jpg"
-                    },
-                    "message": "Another reply to comment 5",
-                    "createdAt": "2024-04-28T05:34:56Z"
-                }
-            ],
+            "replies": [],
             "likeCount": 7,
             "createdAt": "2022-05-30T12:34:56Z"
         }

@@ -13,9 +13,9 @@ interface CommentCardProps {
 }
 
 const CommentCard: React.FC<CommentCardProps> = ({ data }) => {
+    const [isOpenReply, setIsOpenReply] = useState(false);
     const [isLike, setIsLike] = useState(false);
     const { setTarget } = useCommentStore();
-    console.log(data);
 
     const handleIsLike = () => {
         setIsLike(!isLike);
@@ -24,7 +24,11 @@ const CommentCard: React.FC<CommentCardProps> = ({ data }) => {
     return (
         <div className='comment-card'>
             <div className='comment-card-profile'>
-                <FaCircleUser size={36} color={'#e8e8e8'} />
+                {data.userId.profileImage !== '' ? (
+                    <img src={data.userId.profileImage} />
+                ) : (
+                    <FaCircleUser size={36} color={'#e8e8e8'} />
+                )}
             </div>
             <div className='comment-card-center-area'>
                 <div className='comment-card-comment'>
@@ -42,8 +46,42 @@ const CommentCard: React.FC<CommentCardProps> = ({ data }) => {
                         답글달기
                     </div>
                 </div>
+                {data.replies.length !== 0 && (
+                    <div className='comment-reply-area'>
+                        <div
+                            onClick={() => {
+                                setIsOpenReply((pre) => !pre);
+                            }}>
+                            {isOpenReply ? '답글 모두 숨기기' : `답글 ${data.replies.length}개 보기`}
+                        </div>
+                        <div>
+                            {isOpenReply &&
+                                data.replies.map((reply) => (
+                                    <div className='comment-card' key={reply.userId + String(reply.createdAt)}>
+                                        <div className='comment-card-profile'>
+                                            {reply.userId.profileImage !== '' ? (
+                                                <img src={reply.userId.profileImage} />
+                                            ) : (
+                                                <FaCircleUser size={36} color={'#e8e8e8'} />
+                                            )}
+                                        </div>
+                                        <div className='comment-card-center-area'>
+                                            <div className='comment-card-comment'>
+                                                <Link to={`/user/${data.userId._id}`}>{data.userId.name}</Link>
+                                                {reply.message}
+                                            </div>
+                                            <div className='comment-card-nav'>
+                                                <div className='comment-card-nav-btn'>
+                                                    {getTimeSince(new Date(String(reply.createdAt)))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                        </div>
+                    </div>
+                )}
             </div>
-
             <div className='comment-card-like'>
                 {isLike ? <FaHeart onClick={handleIsLike} /> : <FaRegHeart onClick={handleIsLike} />}
             </div>

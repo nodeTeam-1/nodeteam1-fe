@@ -33,9 +33,9 @@ export const getProfileQuery = (userId: string) => {
 };
 
 // 내 프로필 정보 가져오기
-export const getMyProfile = (userId: string) => {
+export const getMyProfile = () => {
     return useQuery<AxiosResponse<UserProfileResponse>>({
-        queryKey: ['getMyProfile', userId],
+        queryKey: ['getMyProfile'],
         queryFn: () => getAsync(`/user/profile`),
         retry: 0
     });

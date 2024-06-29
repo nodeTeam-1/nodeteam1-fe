@@ -1,18 +1,18 @@
 .comment-container {
-    height: 100%;
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
 
 .comment-list {
+    height: 100%;
     flex: 1;
 }
 
 .comment-card {
     display: flex;
     justify-content: space-between;
-    max-height: 100px;
-    border: 1px solid black;
+    //border: 1px solid black;
     padding: 8px;
     margin-top: 8px;
 }
@@ -20,6 +20,13 @@
 .comment-card-like .comment-card-profile {
     width: 100px;
 }
+
+.comment-card-profile img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
 .comment-card-center-area {
     flex: 1;
 }
@@ -56,8 +63,8 @@
 }
 
 .form-wrapper {
-    position: fixed;
-    bottom: 53px;
+    position: relative;
+    bottom: 0px;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -124,4 +131,11 @@
     color: blue;
     font-size: 16px;
     height: 40px;
+}
+
+.comment-reply-area {
+    font-size: 12px;
+    color: #737373;
+    margin-left: 8px;
+    margin-top: 4px;
 }

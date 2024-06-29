@@ -9,7 +9,6 @@ interface CommentListProps {
 }
 
 const CommentList: React.FC<CommentListProps> = ({ comments }) => {
-    console.log(comments);
     return (
         <div className='comment-list'>
             {comments.map((data) => (

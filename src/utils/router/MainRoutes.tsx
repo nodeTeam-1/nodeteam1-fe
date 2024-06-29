@@ -12,8 +12,8 @@ const MainRoutes: React.FC = () => {
     return (
         <Routes>
             <Route path='/' element={<MainPage />} />
+            <Route path='/feed/detail/:id' element={<FeedDetailPage />} />
             <Route path='/feed/:id' element={<FeedPage />} />
-            <Route path='/feed/:id/:id' element={<FeedDetailPage />} />
             <Route path='/user/login' element={<LoginPage />} />
             <Route path='/user/register' element={<RegisterPage />} />
             <Route path='/userList' element={<UserList />} />
