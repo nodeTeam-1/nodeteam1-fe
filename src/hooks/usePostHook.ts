@@ -9,15 +9,20 @@ interface User {
     profileImage: string;
 }
 
-// Post 데이터 인터페이스 정의
-export interface PostData {
+// 새로운 포스트를 생성할 때 사용하는 데이터 타입
+export interface CreatePostData {
+    title: string;
+    category: string;
+    images: string;
+    content: string;
+    location: string;
+    tags: string[];
+}
+
+// 서버에서 반환하는 전체 포스트 데이터 타입
+export interface PostData extends CreatePostData {
     _id: string;
     userId: User;
-    title: string;
-    content: string;
-    images: string;
-    category: string;
-    tags: string[];
     likeCount: number;
     createdAt: Date;
     updatedAt: Date;
@@ -47,10 +52,10 @@ export const getPostDetailQuery = (postId: string) => {
 };
 
 // Post 생성
-export const createPostMutation = (): UseMutationResult<AxiosResponse<PostData>, unknown, PostData, unknown> => {
+export const createPostMutation = (): UseMutationResult<AxiosResponse<PostData>, unknown, CreatePostData, unknown> => {
     const path = `/post`;
-    return useMutation<AxiosResponse<PostData>, unknown, PostData>({
-        mutationFn: (data: PostData) => postAsync(path, data)
+    return useMutation<AxiosResponse<PostData>, unknown, CreatePostData>({
+        mutationFn: (data: CreatePostData) => postAsync(path, data)
     });
 };
 
