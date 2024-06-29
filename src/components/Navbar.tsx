@@ -1,40 +1,60 @@
 import React, { useEffect } from 'react';
-import { useUserStore } from '../store/userStore';
-import { useLocation } from 'react-router';
-import { useNavigate } from 'react-router-dom';
+import { useUserStore } from '../store/userStore'; // 사용자 상태 관리
+import { useLocation } from 'react-router'; // 현재 경로 정보를 얻기 위해 사용
+import { useNavigate } from 'react-router-dom'; // 경로 이동을 위해 사용
+import ProfileImage from './profile/ProfileImage';
 import { MdHomeFilled } from 'react-icons/md';
 import { IoIosSearch } from 'react-icons/io';
-import { MdOutlinePlace } from 'react-icons/md';
+// import { MdOutlinePlace } from 'react-icons/md';
 import { MdOutlineAddBox } from 'react-icons/md';
 import { LuSend } from 'react-icons/lu';
 import { MdOutlineLogout } from 'react-icons/md';
-import ProfileImage from './profile/ProfileImage';
 
-const Navbar: React.FC = () => {
+// NavbarProps 인터페이스 정의
+interface NavbarProps {
+    setIsModalOpen: (value: boolean) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ setIsModalOpen }) => {
     const navigate = useNavigate();
     const { userId, userDelete } = useUserStore();
 
+    // 로그아웃 클릭 시 사용자 상태 삭제 및 토큰 제거
     const logoutClick = () => {
         userDelete();
         sessionStorage.removeItem('token');
     };
 
+    // 메세지 클릭 시 사용자 리스트 페이지로 이동
     const dmClick = () => {
         navigate('/userList');
     };
 
+    // 사용자 ID가 없을 경우 로그인 페이지로 리다이렉트
     useEffect(() => {
         if (!userId) {
             navigate('/user/login');
         }
-    }, [userId]);
-    //메인 페이지를 제외한 곳에선 보이지 않음. ex)로그인 페이지, 회원가입 페이지
-    const location = useLocation();
-    const excludePaths = /^\/user(\/|$)/;
-    // if (location.pathname === '/user/*') {
+    }, [userId, navigate]);
+
+    const location = useLocation(); // 현재 경로 정보
+    const excludePaths = /^\/user(\/|$)/; // 제외할 경로 패턴
+
+    // 특정 경로에서는 네비게이션 바를 표시하지 않음
     if (excludePaths.test(location.pathname)) {
         return <></>;
     }
+
+    // 프로필 이미지 클릭 시 피드 페이지로 이동
+    const goToMyFeedPage = () => {
+        navigate(`/feed/${userId}`);
+    };
+
+    // 게시글 아이콘 클릭 시 모달 열기
+    const openPostModal = () => {
+        setIsModalOpen(true);
+    };
+
     return (
         <nav className='navbar'>
             <ul className='nav-list'>
@@ -46,11 +66,11 @@ const Navbar: React.FC = () => {
                     검색
                     <IoIosSearch />
                 </li>
-                <li className='nav-item'>
+                {/* <li className='nav-item'>
                     위치
                     <MdOutlinePlace />
-                </li>
-                <li className='nav-item'>
+                </li> */}
+                <li className='nav-item' onClick={openPostModal}>
                     게시글
                     <MdOutlineAddBox />
                 </li>
@@ -62,7 +82,7 @@ const Navbar: React.FC = () => {
                     로그아웃
                     <MdOutlineLogout />
                 </li>
-                <li className='nav-item'>
+                <li className='nav-item' onClick={goToMyFeedPage}>
                     <ProfileImage userId={userId} />
                 </li>
             </ul>
