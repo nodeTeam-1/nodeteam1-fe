@@ -17,7 +17,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ setIsModalOpen }) => {
     const navigate = useNavigate();
-    const { userId, userDelete } = useUserStore();
+    const { userId, userName, userProfileImage, userDelete } = useUserStore();
 
     // 로그아웃 클릭 시 사용자 상태 삭제 및 토큰 제거
     const logoutClick = () => {
@@ -29,13 +29,6 @@ const Navbar: React.FC<NavbarProps> = ({ setIsModalOpen }) => {
     const dmClick = () => {
         navigate('/userList');
     };
-
-    // 사용자 ID가 없을 경우 로그인 페이지로 리다이렉트
-    useEffect(() => {
-        if (!userId) {
-            navigate('/user/login');
-        }
-    }, [userId, navigate]);
 
     const location = useLocation(); // 현재 경로 정보
     const excludePaths = /^\/user(\/|$)/; // 제외할 경로 패턴
@@ -83,7 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsModalOpen }) => {
                     <MdOutlineLogout />
                 </li>
                 <li className='nav-item' onClick={goToMyFeedPage}>
-                    <ProfileImage userId={userId} />
+                    <ProfileImage name={userName} profileImageSrc={userProfileImage} />
                 </li>
             </ul>
         </nav>

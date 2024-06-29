@@ -27,7 +27,7 @@ export const UserList: React.FC = () => {
                 element._id !== userId ? (
                     <div className='user-list-wrap' key={index}>
                         <div className='user-list'>
-                            <ProfileImage userId={element._id} />
+                            <ProfileImage name={element.name} profileImageSrc={element.profileImage} />
                             <ul className='user-info' onClick={() => postClick(element._id)}>
                                 <li className='user-name'>{element.name}</li>
                                 <li className='user-bio'>BIO : {element.bio || 'bio'}</li>

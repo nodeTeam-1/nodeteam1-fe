@@ -8,6 +8,7 @@ import './postCard.scss';
 interface User {
     _id: string;
     name: string;
+    profileImage: string;
 }
 
 interface Post {
@@ -34,7 +35,7 @@ const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts }) => {
             {posts.map((post) => (
                 <div className='post-card-wrap' key={post._id}>
                     <div className='post-head'>
-                        <ProfileImage userId={post.userId._id} />
+                        <ProfileImage name={post.userId.name} profileImageSrc={post.userId.profileImage} />
                         <ul className='post-info'>
                             <li className='post-id'>{post.userId.name}</li>
                             <li className='post-date'>{new Date(post.createdAt).toLocaleDateString()}</li>
