@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import ProfileCard from '../../components/profile/ProfileCard';
 import PostImageContainer from '../../components/postImage/PostImageContainer';
 import { getProfileQuery } from '../../hooks/useProfileHook';
-import { getPostsQuery } from '../../hooks/usePostHook';
+import { getPostsByUserIdQuery } from '../../hooks/usePostHook';
 import { useUserStore } from '../../store/userStore';
 import './feed.scss';
 
 const FeedPage: React.FC = () => {
     const [selectedTab, setSelectedTab] = useState<number>(0); // 선택된 탭의 인덱스 상태
-    const [page] = useState<number>(1); // 현재 페이지 번호 상태
-    const [pageSize] = useState<number>(10); // 페이지 크기 상태
     const { userId } = useUserStore(); // 사용자 ID 상태 가져오기
 
     const handleTabClick = (index: number) => {
@@ -17,7 +15,7 @@ const FeedPage: React.FC = () => {
     };
 
     const { data: profileData, isLoading: profileLoading, isError: profileError } = getProfileQuery(userId);
-    const { data: postsData, isLoading: postsLoading, isError: postsError } = getPostsQuery(page, '', pageSize);
+    const { data: postsData, isLoading: postsLoading, isError: postsError } = getPostsByUserIdQuery(userId);
 
     // 로딩 상태 처리
     if (profileLoading || postsLoading) {

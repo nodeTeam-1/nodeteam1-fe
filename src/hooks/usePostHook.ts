@@ -47,6 +47,15 @@ export const getPostsQuery = (page: number, name: string, pageSize: number) => {
     });
 };
 
+// Posts Id별 목록 가져오기
+export const getPostsByUserIdQuery = (userId: string) => {
+    const path = `/post/${userId}`;
+    return useQuery<AxiosResponse<PostResponse>>({
+        queryKey: ['getPostsByUserId', userId],
+        queryFn: () => getAsync(path)
+    });
+};
+
 // Post 상세 정보 가져오기
 export const getPostDetailQuery = (postId: string) => {
     const path = `/post/${postId}`;

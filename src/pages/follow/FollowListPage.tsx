@@ -23,7 +23,7 @@ const FollowListPage: React.FC = () => {
         navigate(`/dm/${id}`);
     };
     return (
-        <div className='page-container'>
+        <div className='page-container follow-page'>
             <h2 className='page-title'>리스트</h2>
             {data?.data.user.map((element: UserInfo, index: number) =>
                 element._id !== userId ? (
