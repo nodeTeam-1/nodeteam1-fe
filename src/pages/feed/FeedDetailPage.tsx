@@ -7,7 +7,7 @@ const FeedDetailPage: React.FC = () => {
     return (
         <div className='feed-detail-page'>
             <div className='feed-image'>
-                <PostImage src={''} alt={''} />
+                <PostImage key={''} src={''} alt={''} />
             </div>
             <div className='feed-comment'>
                 <CommnetContainer />

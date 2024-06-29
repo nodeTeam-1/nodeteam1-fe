@@ -33,33 +33,15 @@ const FeedPage: React.FC = () => {
     const tabs = [
         {
             title: '게시글',
-            content: (
-                <div>
-                    {postsData.data.data.map((post) => (
-                        <PostImageContainer key={post._id} src={post.images} alt='postImage' />
-                    ))}
-                </div>
-            )
+            content: <PostImageContainer posts={postsData.data.data} />
         },
         {
             title: '저장됨',
-            content: (
-                <div>
-                    {postsData.data.data.map((post) => (
-                        <PostImageContainer key={post._id} src={post.images} alt='postImage' />
-                    ))}
-                </div>
-            )
+            content: <PostImageContainer posts={postsData.data.data} />
         },
         {
             title: '태그됨',
-            content: (
-                <div>
-                    {postsData.data.data.map((post) => (
-                        <PostImageContainer key={post._id} src={post.images} alt='postImage' />
-                    ))}
-                </div>
-            )
+            content: <PostImageContainer posts={postsData.data.data} />
         }
     ];
 
