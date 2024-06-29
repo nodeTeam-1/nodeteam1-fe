@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDmStore } from '../../store/dmStore';
 import { deleteDmMutation, getDmListenerQuery, sendDmMutation } from '../../hooks/useDmHook';
+import { useDmStore } from '../../store/dmStore';
 import { useUserStore } from '../../store/userStore';
+import './dm.scss';
 
 interface User {
     _id: string;
@@ -90,7 +91,7 @@ export const DmPage = () => {
 
     return (
         <div className='page-container dm-page'>
-            <h2>Server-Sent Events with React</h2>
+            <h2 className='page-title'>{ }님과의 대화</h2>
             <ul>
                 {msgStorage?.map((msg: Message, index: number) => (
                     <li key={index} onClick={() => chattingDeleteClick(msg.userId, msg.message, msg.messageIndex)}>

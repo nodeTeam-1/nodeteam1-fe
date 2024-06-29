@@ -13,7 +13,7 @@ interface UserInfo {
     bio: string;
 }
 
-export const UserList: React.FC = () => {
+const FollowListPage: React.FC = () => {
     const navigate = useNavigate();
     const { userId } = useUserStore();
     const { data } = getUserListQuery();
@@ -24,7 +24,7 @@ export const UserList: React.FC = () => {
     };
     return (
         <div className='page-container'>
-            <h2 className='page-title'>{}리스트</h2>
+            <h2 className='page-title'>리스트</h2>
             {data?.data.user.map((element: UserInfo, index: number) =>
                 element._id !== userId ? (
                     <div className='user-head' key={index}>
@@ -39,3 +39,5 @@ export const UserList: React.FC = () => {
         </div>
     );
 };
+
+export default FollowListPage;
