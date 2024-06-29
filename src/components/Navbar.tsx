@@ -10,7 +10,12 @@ import { MdOutlineAddBox } from 'react-icons/md';
 import { LuSend } from 'react-icons/lu';
 import { MdOutlineLogout } from 'react-icons/md';
 
-const Navbar: React.FC = () => {
+// NavbarProps 인터페이스 정의
+interface NavbarProps {
+    setIsModalOpen: (value: boolean) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ setIsModalOpen }) => {
     const navigate = useNavigate();
     const { userId, userDelete } = useUserStore();
 
@@ -45,6 +50,11 @@ const Navbar: React.FC = () => {
         navigate(`/feed/${userId}`);
     };
 
+    // 게시글 아이콘 클릭 시 모달 열기
+    const openPostModal = () => {
+        setIsModalOpen(true);
+    };
+
     return (
         <nav className='navbar'>
             <ul className='nav-list'>
@@ -60,7 +70,7 @@ const Navbar: React.FC = () => {
                     위치
                     <MdOutlinePlace />
                 </li> */}
-                <li className='nav-item'>
+                <li className='nav-item' onClick={openPostModal}>
                     게시글
                     <MdOutlineAddBox />
                 </li>
