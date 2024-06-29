@@ -7,6 +7,7 @@ interface IUser {
 interface IReply {
     userId: IUser;
     message: string;
+    createdAt: String;
 }
 
 export interface ICommentData {
@@ -16,6 +17,7 @@ export interface ICommentData {
     content: string;
     replies: IReply[];
     likeCount: number;
+    createdAt: String;
 }
 
 export interface ICreateComment {

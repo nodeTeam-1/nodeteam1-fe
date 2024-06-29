@@ -17,7 +17,8 @@
                         "name": "Bob",
                         "profileImage": "https://example.com/images/bob.jpg"
                     },
-                    "message": "This is a reply to comment 1"
+                    "message": "This is a reply to comment 1",
+                    "createdAt": "2024-06-28T12:34:56Z"
                 },
                 {
                     "_id": "7",
@@ -26,10 +27,12 @@
                         "name": "Charlie",
                         "profileImage": "https://example.com/images/charlie.jpg"
                     },
-                    "message": "Another reply to comment 1"
+                    "message": "Another reply to comment 1",
+                    "createdAt": "2024-06-28T11:34:56Z"
                 }
             ],
-            "likeCount": 10
+            "likeCount": 10,
+            "createdAt": "2024-06-28T12:34:56Z"
         },
         {
             "_id": "2",
@@ -49,10 +52,11 @@
                         "profileImage": "https://example.com/images/alice.jpg"
                     },
                     "message": "This is a reply to comment 2",
-                    "isDeleted": false
+                    "createdAt": "2024-06-28T10:34:56Z"
                 }
             ],
-            "likeCount": 5
+            "likeCount": 5,
+            "createdAt": "2024-06-26T12:34:56Z"
         },
         {
             "_id": "3",
@@ -71,7 +75,8 @@
                         "name": "Bob",
                         "profileImage": "https://example.com/images/bob.jpg"
                     },
-                    "message": "This is a reply to comment 3"
+                    "message": "This is a reply to comment 3",
+                    "createdAt": "2024-06-28T09:34:56Z"
                 },
                 {
                     "_id": "10",
@@ -80,10 +85,12 @@
                         "name": "Alice",
                         "profileImage": "https://example.com/images/alice.jpg"
                     },
-                    "message": "Another reply to comment 3"
+                    "message": "Another reply to comment 3",
+                    "createdAt": "2024-06-28T08:34:56Z"
                 }
             ],
-            "likeCount": 8
+            "likeCount": 8,
+            "createdAt": "2024-06-21T12:34:56Z"
         },
         {
             "_id": "4",
@@ -102,10 +109,12 @@
                         "name": "Bob",
                         "profileImage": "https://example.com/images/bob.jpg"
                     },
-                    "message": "This is a reply to comment 4"
+                    "message": "This is a reply to comment 4",
+                    "createdAt": "2024-06-28T07:34:56Z"
                 }
             ],
-            "likeCount": 2
+            "likeCount": 2,
+            "createdAt": "2024-02-17T12:34:56Z"
         },
         {
             "_id": "5",
@@ -124,7 +133,8 @@
                         "name": "Charlie",
                         "profileImage": "https://example.com/images/charlie.jpg"
                     },
-                    "message": "This is a reply to comment 5"
+                    "message": "This is a reply to comment 5",
+                    "createdAt": "2024-06-28T06:34:56Z"
                 },
                 {
                     "_id": "13",
@@ -133,10 +143,12 @@
                         "name": "Alice",
                         "profileImage": "https://example.com/images/alice.jpg"
                     },
-                    "message": "Another reply to comment 5"
+                    "message": "Another reply to comment 5",
+                    "createdAt": "2024-04-28T05:34:56Z"
                 }
             ],
-            "likeCount": 7
+            "likeCount": 7,
+            "createdAt": "2022-05-30T12:34:56Z"
         }
     ]
 }
