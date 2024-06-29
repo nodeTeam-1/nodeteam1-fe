@@ -42,7 +42,7 @@ const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts }) => {
                         </ul>
                         <IoIosMore />
                     </div>
-                    <PostCard post={post} onClick={() => navigate(`/feed/detail/${post._id}`)} />
+                    <PostCard post={post} onClick={() => navigate(`/feed/detail/${post._id}`, { state: { post } })} />
                 </div>
             ))}
         </div>
