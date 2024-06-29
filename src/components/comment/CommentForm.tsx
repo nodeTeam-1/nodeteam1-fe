@@ -6,7 +6,7 @@ import { FaCircleUser } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
 import { useCommentStore } from '../../store/commentStroe';
 import { useCommentRegister, useReplyCommentRegister } from '../../hooks/useCommentHook';
-import { getMyProfile } from '../../hooks/useProfileHooks';
+import { getMyProfile } from '../../hooks/useProfileHook';
 import './comment.scss';
 
 interface ICommentFormInput {

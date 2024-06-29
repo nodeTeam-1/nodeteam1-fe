@@ -9,7 +9,21 @@ interface User {
     profileImage: string;
 }
 
-// 새로운 포스트를 생성할 때 사용하는 데이터 타입
+// Post 데이터 인터페이스 정의
+export interface PostData {
+    _id: string;
+    userId: User;
+    title: string;
+    content: string;
+    images: string;
+    category: string;
+    tags: string[];
+    likeCount: number;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+// CreatePostData 데이터 인터페이스 정의
 export interface CreatePostData {
     title: string;
     category: string;
@@ -17,15 +31,6 @@ export interface CreatePostData {
     content: string;
     location: string;
     tags: string[];
-}
-
-// 서버에서 반환하는 전체 포스트 데이터 타입
-export interface PostData extends CreatePostData {
-    _id: string;
-    userId: User;
-    likeCount: number;
-    createdAt: Date;
-    updatedAt: Date;
 }
 
 export interface PostResponse {
