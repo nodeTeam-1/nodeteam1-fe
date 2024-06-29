@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { MdHomeFilled } from 'react-icons/md';
 import { IoIosSearch } from 'react-icons/io';
-import { MdOutlinePlace } from 'react-icons/md';
+// import { MdOutlinePlace } from 'react-icons/md';
 import { MdOutlineAddBox } from 'react-icons/md';
 import { LuSend } from 'react-icons/lu';
 import { MdOutlineLogout } from 'react-icons/md';
@@ -31,10 +31,14 @@ const Navbar: React.FC = () => {
     //메인 페이지를 제외한 곳에선 보이지 않음. ex)로그인 페이지, 회원가입 페이지
     const location = useLocation();
     const excludePaths = /^\/user(\/|$)/;
-    // if (location.pathname === '/user/*') {
     if (excludePaths.test(location.pathname)) {
         return <></>;
     }
+
+    const goToMyFeedPage = () => {
+        navigate(`/feed/${userId}`);
+    };
+
     return (
         <nav className='navbar'>
             <ul className='nav-list'>
@@ -46,10 +50,10 @@ const Navbar: React.FC = () => {
                     검색
                     <IoIosSearch />
                 </li>
-                <li className='nav-item'>
+                {/* <li className='nav-item'>
                     위치
                     <MdOutlinePlace />
-                </li>
+                </li> */}
                 <li className='nav-item'>
                     게시글
                     <MdOutlineAddBox />
@@ -62,7 +66,7 @@ const Navbar: React.FC = () => {
                     로그아웃
                     <MdOutlineLogout />
                 </li>
-                <li className='nav-item'>
+                <li className='nav-item' onClick={goToMyFeedPage}>
                     <ProfileImage userId={userId} />
                 </li>
             </ul>

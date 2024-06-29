@@ -98,11 +98,12 @@
 }
 
 .navbar {
+
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    position: fixed;
     bottom: 0;
     left: 0;
     background-color: #f0f0f0;
