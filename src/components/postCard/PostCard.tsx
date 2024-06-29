@@ -6,7 +6,6 @@ import './postCard.scss';
 interface User {
     _id: string;
     name: string;
-    profileImage: string;
 }
 
 interface Post {
@@ -29,7 +28,7 @@ interface PostCardProps {
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
     return (
         <div className='post-card'>
-            <PostImage src={post.images} alt={`${post.images}`} />
+            <PostImage src={post.images} alt='PostImage' />
             <PostCardAction likeCount={post.likeCount} />
             <div className='post-contents'>
                 <p className='post-title'>{post.title}</p>

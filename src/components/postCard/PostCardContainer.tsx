@@ -2,13 +2,11 @@ import React from 'react';
 import PostCard from './PostCard';
 import ProfileImage from '../profile/ProfileImage';
 import { IoIosMore } from 'react-icons/io';
-import { getPostsQuery } from './../../hooks/usePostHook';
 import './postCard.scss';
 
 interface User {
     _id: string;
     name: string;
-    profileImage: string;
 }
 
 interface Post {
@@ -24,24 +22,14 @@ interface Post {
     updatedAt: Date;
 }
 
-const PostCardContainer: React.FC = () => {
-    const { data, isLoading, isError } = getPostsQuery(1, '', 10); // 기본값으로 사용
+interface PostCardContainerProps {
+    posts: Post[];
+}
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (isError || !data?.data?.data) {
-        return <div>Error loading posts</div>;
-    }
-
-    if (data.data.data.length === 0) {
-        return <div>No posts available</div>;
-    }
-
+const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts }) => {
     return (
         <div className='post-card-container'>
-            {data.data.data.map((post: Post) => (
+            {posts.map((post) => (
                 <div className='post-card-wrap' key={post._id}>
                     <div className='post-head'>
                         <ProfileImage userId={post.userId._id} />

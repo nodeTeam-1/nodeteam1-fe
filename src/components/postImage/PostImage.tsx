@@ -7,7 +7,11 @@ interface PostImageProps {
 }
 
 const PostImage: React.FC<PostImageProps> = ({ src, alt }) => {
-    return <img className='post-image' src={src} alt={alt} />;
+    return (
+        <div className='post-image'>
+            <img src={src} alt={alt} />
+        </div>
+    );
 };
 
 export default PostImage;

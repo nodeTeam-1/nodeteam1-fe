@@ -27,7 +27,7 @@ export const userLoginMutation = (path: string) => {
     });
 };
 
-// MainPage: token 확인 후 token 로그인 시 사용
+// AppLayout.tsx: token 확인 후 token 로그인 시 사용
 export const tokenLoginQuery = (path: string) => {
     console.log('tokenLoginQuery');
     return useQuery<AxiosResponse<any>>({

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useUserStore } from '../store/userStore';
 import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { MdHomeFilled } from 'react-icons/md';
 import { IoIosSearch } from 'react-icons/io';
 import { MdOutlinePlace } from 'react-icons/md';
@@ -10,14 +11,23 @@ import { MdOutlineLogout } from 'react-icons/md';
 import ProfileImage from './profile/ProfileImage';
 
 const Navbar: React.FC = () => {
-    const { user, setUser } = useUserStore();
-    console.log('user', user);
+    const navigate = useNavigate();
+    const { userId, userDelete } = useUserStore();
 
     const logoutClick = () => {
-        setUser('');
+        userDelete();
         sessionStorage.removeItem('token');
     };
 
+    const dmClick = () => {
+        navigate('/userList');
+    };
+
+    useEffect(() => {
+        if (!userId) {
+            navigate('/user/login');
+        }
+    }, [userId]);
     //메인 페이지를 제외한 곳에선 보이지 않음. ex)로그인 페이지, 회원가입 페이지
     const location = useLocation();
     const excludePaths = /^\/user(\/|$)/;
@@ -28,7 +38,7 @@ const Navbar: React.FC = () => {
     return (
         <nav className='navbar'>
             <ul className='nav-list'>
-                <li className='nav-item'>
+                <li className='nav-item' onClick={() => navigate('/')}>
                     홈
                     <MdHomeFilled />
                 </li>
@@ -44,7 +54,7 @@ const Navbar: React.FC = () => {
                     게시글
                     <MdOutlineAddBox />
                 </li>
-                <li className='nav-item'>
+                <li className='nav-item' onClick={dmClick}>
                     메세지
                     <LuSend />
                 </li>
@@ -53,7 +63,7 @@ const Navbar: React.FC = () => {
                     <MdOutlineLogout />
                 </li>
                 <li className='nav-item'>
-                    <ProfileImage userId={''} />
+                    <ProfileImage userId={userId} />
                 </li>
             </ul>
         </nav>
