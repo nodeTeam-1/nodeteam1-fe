@@ -5,11 +5,12 @@ interface PostImageProps {
     key: string;
     src: string;
     alt: string;
+    onClick?: () => void;
 }
 
-const PostImage: React.FC<PostImageProps> = ({ key, src, alt }) => {
+const PostImage: React.FC<PostImageProps> = ({ key, src, alt, onClick }) => {
     return (
-        <div className='post-image' key={key}>
+        <div className='post-image' key={key} onClick={onClick}>
             <img src={src} alt={alt} />
         </div>
     );
