@@ -52,6 +52,11 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ setClose, close }) => {
 
         // 뮤테이션 실행
         mutation.mutate(postData, {
+            onSuccess: () => {
+                console.log('Post submitted successfully:', postData);
+                setClose(false);
+                reset();
+            },
             onError: (error) => {
                 console.error('Error uploading post:', error);
             }
