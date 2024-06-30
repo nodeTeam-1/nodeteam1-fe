@@ -24,13 +24,20 @@ interface Post {
 interface PostCardProps {
     post: Post;
     onClick?: () => void; // Optional onClick prop
+    refetch?: () => void;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ post, onClick }) => {
+const PostCard: React.FC<PostCardProps> = ({ post, onClick, refetch }) => {
     return (
         <div className='post-card'>
             <PostImage key={post.title} src={post.images} alt='PostImage' />
-            <PostCardAction likeCount={post.likeCount} userId={post.userId._id} onClick={onClick} />
+            <PostCardAction
+                likeCount={post.likeCount}
+                postId={post._id}
+                postUserId={post.userId._id}
+                onClick={onClick}
+                refetch={refetch}
+            />
             <div className='post-contents'>
                 <p className='post-title'>{post.title}</p>
                 <p className='post-content' onClick={onClick}>

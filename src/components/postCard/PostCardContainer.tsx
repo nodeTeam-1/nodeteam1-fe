@@ -26,9 +26,10 @@ interface Post {
 
 interface PostCardContainerProps {
     posts: Post[];
+    refetch: () => void;
 }
 
-const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts }) => {
+const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts, refetch }) => {
     const navigate = useNavigate();
     return (
         <div className='post-card-container'>
@@ -46,7 +47,11 @@ const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts }) => {
                         </ul>
                         <IoIosMore />
                     </div>
-                    <PostCard post={post} onClick={() => navigate(`/feed/detail/${post._id}`, { state: { post } })} />
+                    <PostCard
+                        post={post}
+                        refetch={refetch}
+                        onClick={() => navigate(`/feed/detail/${post._id}`, { state: { post } })}
+                    />
                 </div>
             ))}
         </div>
