@@ -8,7 +8,7 @@ import { useUserStore } from '../store/userStore';
 
 const MainPage: React.FC = () => {
     const navigate = useNavigate();
-    const { userId, userName } = useUserStore();
+    const { userId } = useUserStore();
     const [page, setPage] = useState(1); // 현재 페이지 번호
     const [posts, setPosts] = useState<PostData[]>([]); // 포스트 목록
     const [hasMore, setHasMore] = useState(true);
@@ -27,11 +27,8 @@ const MainPage: React.FC = () => {
     useEffect(() => {
         if (!userId) {
             navigate('/user/login');
-        } else {
-            console.log('mainPage refetch');
-            refetch();
         }
-    }, [userId, navigate, refetch]);
+    }, [userId, navigate]);
 
     const lastPostElementRef = useCallback(
         (node: HTMLElement | null) => {
