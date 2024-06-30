@@ -1,14 +1,13 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ProfileCard from '../../components/profile/ProfileCard';
 import PostImageContainer from '../../components/postImage/PostImageContainer';
 import { getProfileQuery } from '../../hooks/useProfileHook';
 import { getPostsByUserIdQuery, PostData } from '../../hooks/usePostHook';
-import { useUserStore } from '../../store/userStore';
 import './feed.scss';
 
 const FeedPage: React.FC = () => {
     const [selectedTab, setSelectedTab] = useState<number>(0);
-    const { userId } = useUserStore();
     const pageSize = 12;
     const [page, setPage] = useState<number>(1);
     const [posts, setPosts] = useState<PostData[]>([]);
@@ -19,13 +18,14 @@ const FeedPage: React.FC = () => {
         setSelectedTab(index);
     };
 
-    const { data: profileData, isLoading: profileLoading, isError: profileError } = getProfileQuery(userId);
+    const { id } = useParams();
+    const { data: profileData, isLoading: profileLoading, isError: profileError } = getProfileQuery(id || '');
 
     const {
         data: postsData,
         isLoading: postsLoading,
         isError: postsError
-    } = getPostsByUserIdQuery(userId, page, pageSize);
+    } = getPostsByUserIdQuery(id || '', page, pageSize);
 
     useEffect(() => {
         if (postsData?.data.data) {
