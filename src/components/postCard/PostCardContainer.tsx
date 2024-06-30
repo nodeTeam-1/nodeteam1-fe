@@ -26,14 +26,16 @@ interface Post {
 
 interface PostCardContainerProps {
     posts: Post[];
+    refetch: () => void;
 }
 
-const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts }) => {
+const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts, refetch }) => {
     const navigate = useNavigate();
+    console.log(posts);
     return (
         <div className='post-card-container'>
-            {posts.map((post, index) => (
-                <div className='post-card-wrap' key={post._id + index}>
+            {posts.map((post) => (
+                <div className='post-card-wrap' key={post._id}>
                     <div className='user-head'>
                         <ProfileImage
                             userId={post.userId._id}
@@ -46,7 +48,11 @@ const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts }) => {
                         </ul>
                         <IoIosMore />
                     </div>
-                    <PostCard post={post} onClick={() => navigate(`/feed/detail/${post._id}`, { state: { post } })} />
+                    <PostCard
+                        post={post}
+                        refetch={refetch}
+                        onClick={() => navigate(`/feed/detail/${post._id}`, { state: { post } })}
+                    />
                 </div>
             ))}
         </div>

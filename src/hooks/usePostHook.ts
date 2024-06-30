@@ -91,20 +91,28 @@ export const deletePostMutation = (postId: string): UseMutationResult<AxiosRespo
 
 // Post Like 생성
 export const createPostLikeMutation = (
-    postId: string
+    postId: string,
+    refatch: () => void
 ): UseMutationResult<AxiosResponse<void>, unknown, void, unknown> => {
     const path = `/post/like/${postId}`;
     return useMutation<AxiosResponse<void>, unknown, void>({
-        mutationFn: () => postAsync(path, {})
+        mutationFn: () => postAsync(path, {}),
+        onSuccess: () => {
+            refatch();
+        }
     });
 };
 
 // Post Like 삭제
 export const deletePostLikeMutation = (
-    postId: string
+    postId: string,
+    refatch: () => void
 ): UseMutationResult<AxiosResponse<void>, unknown, void, unknown> => {
     const path = `/post/like/${postId}`;
     return useMutation<AxiosResponse<void>, unknown, void>({
-        mutationFn: () => deleteAsync(path)
+        mutationFn: () => deleteAsync(path),
+        onSuccess: () => {
+            refatch();
+        }
     });
 };

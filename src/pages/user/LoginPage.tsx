@@ -13,7 +13,7 @@ interface FormData {
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
-    const { userId, setUserId, setUserName, setUserProfileImage, setUserBio } = useUserStore();
+    const { userId, setUserId, setUserName, setUserProfileImage, setUserBio, setPostLike } = useUserStore();
     const [formData, setFormData] = useState<FormData>({
         email: '',
         password: ''
@@ -33,6 +33,7 @@ const LoginPage: React.FC = () => {
             setUserName(data?.data.user.name);
             setUserProfileImage(data?.data.user.profileImage);
             setUserBio(data?.data.user.bio);
+            setPostLike(data?.data.user.postLike);
             navigate('/');
         } else if (mutation.isSuccess && mutation.data && mutation.data.status === 200) { // 뮤테이션 성공 시 메인 페이지로 이동
             console.log('Mutation successful:', mutation.data);
@@ -40,6 +41,7 @@ const LoginPage: React.FC = () => {
             setUserName(mutation.data.data.user.name);
             setUserProfileImage(mutation.data.data.user.profileImage);
             setUserBio(mutation.data.data.user.bio);
+            setPostLike(mutation.data.data.user.postLike);
             sessionStorage.setItem("token", mutation.data.data.token);
             navigate('/');
         }
