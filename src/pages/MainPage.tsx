@@ -17,7 +17,7 @@ const MainPage: React.FC = () => {
 
     useEffect(() => {
         if (data?.data.data) {
-            setPosts((prevPosts) => [...prevPosts, ...data.data.data]);
+            setPosts(() => [...data.data.data]);
             if (page >= (data.data.totalPageNum || 0)) {
                 setHasMore(false);
             }
