@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProfileCard from '../../components/profile/ProfileCard';
 import PostImageContainer from '../../components/postImage/PostImageContainer';
 import { getProfileQuery } from '../../hooks/useProfileHook';
 import { getPostsQuery } from '../../hooks/usePostHook';
 // import { getPostsByUserIdQuery } from '../../hooks/usePostHook';
+
 import { useUserStore } from '../../store/userStore';
 import './feed.scss';
 
@@ -17,9 +19,25 @@ const FeedPage: React.FC = () => {
         setSelectedTab(index); // 탭 클릭 시 선택된 탭 인덱스 업데이트
     };
 
-    const { data: profileData, isLoading: profileLoading, isError: profileError } = getProfileQuery(userId);
-    const { data: postsData, isLoading: postsLoading, isError: postsError } = getPostsQuery(page, '', pageSize);
+    const {
+        data: profileData,
+        isLoading: profileLoading,
+        isError: profileError,
+        refetch: refetchProfile
+    } = getProfileQuery(userId);
+    const {
+        data: postsData,
+        isLoading: postsLoading,
+        isError: postsError,
+        refetch: refetchPosts
+    } = getPostsQuery(page, '', pageSize);
     // const { data: postsData, isLoading: postsLoading, isError: postsError } = getPostsByUserIdQuery(userId);
+
+    // 데이터 업데이트시 새로운 데이터로 바꿈
+    useEffect(() => {
+        refetchProfile();
+        refetchPosts();
+    }, [userId, refetchProfile, refetchPosts]);
 
     // 로딩 상태 처리
     if (profileLoading || postsLoading) {
@@ -48,6 +66,7 @@ const FeedPage: React.FC = () => {
     ];
 
     console.log('#### postsData', postsData);
+    console.log('#### profileData', profileData);
 
     return (
         <div className='my-feed-page'>
