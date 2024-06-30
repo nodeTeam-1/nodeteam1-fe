@@ -10,10 +10,10 @@ import data from './dummy/dummyList.json';
 import './comment.scss';
 
 const CommnetContainer: React.FC = () => {
-    const commentData = data.dummyList as ICommentData[];
+    // const commentData = data.dummyList as ICommentData[];
     const { id } = useParams();
     const { data: commentList } = useGetComment(id ?? '');
-
+    console.log(`commentList: `, commentList);
     return (
         <div className='comment-container'>
             <CommentList comments={commentList ?? []} />

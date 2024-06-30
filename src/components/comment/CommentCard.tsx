@@ -20,7 +20,7 @@ const CommentCard: React.FC<CommentCardProps> = ({ data }) => {
     const handleIsLike = () => {
         setIsLike(!isLike);
     };
-    console.log('test: ', data);
+
     return (
         <div className='comment-card'>
             <div className='comment-card-profile'>
@@ -33,7 +33,7 @@ const CommentCard: React.FC<CommentCardProps> = ({ data }) => {
             <div className='comment-card-center-area'>
                 <div className='comment-card-comment'>
                     <Link to={`/user/${data.userId._id}`}>{data.userId.name}</Link>
-                    {data.content}
+                    {data.message}
                 </div>
                 <div className='comment-card-nav'>
                     <div className='comment-card-nav-btn'>{getTimeSince(new Date(String(data.createdAt)))}</div>

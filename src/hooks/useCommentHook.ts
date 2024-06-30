@@ -3,18 +3,18 @@ import { getAsync, postAsync } from '../utils/api/methods';
 
 interface CommentType {
     postId: string;
-    content: string;
+    message: string;
 }
 
 interface ReplyCommentType {
     commentId: string;
-    content: string;
+    message: string;
 }
 
 export const useCommentRegister = (postId: string) => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: ({ postId, content }: CommentType) => postAsync(`/comment`, { postId, content }),
+        mutationFn: ({ postId, message }: CommentType) => postAsync(`/comment`, { postId, message }),
         onSuccess: () => {
             queryClient.invalidateQueries(postId as InvalidateQueryFilters);
         },
@@ -26,7 +26,7 @@ export const useReplyCommentRegister = (postId: string) => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: ({ commentId, content }: ReplyCommentType) => postAsync(`/comment/${commentId}`, { content }),
+        mutationFn: ({ commentId, message }: ReplyCommentType) => postAsync(`/comment/${commentId}`, { message }),
         onSuccess: () => {
             queryClient.invalidateQueries(postId as InvalidateQueryFilters);
         },

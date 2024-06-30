@@ -14,7 +14,7 @@ export interface ICommentData {
     _id: string;
     userId: IUser;
     postId: string;
-    content: string;
+    message: string;
     replies: IReply[];
     likeCount: number;
     createdAt: String;
@@ -22,5 +22,5 @@ export interface ICommentData {
 
 export interface ICreateComment {
     targetId: string;
-    content: string;
+    message: string;
 }
