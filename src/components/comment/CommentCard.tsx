@@ -18,12 +18,10 @@ const CommentCard: React.FC<CommentCardProps> = ({ data }) => {
     const [isOpenReply, setIsOpenReply] = useState(false);
     const [isLike, setIsLike] = useState(false);
     const { setTarget } = useCommentStore();
-    const { data: profileResponse } = getMyProfileQuery();
     const handleIsLike = () => {
         setIsLike(!isLike);
     };
-    // console.log(profileResponse?.data.user.profileImage)
-    console.log(`test: `, data.userId);
+
     return (
         <div className='comment-card'>
             <div className='comment-card-profile'>
