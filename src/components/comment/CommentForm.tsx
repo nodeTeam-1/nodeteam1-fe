@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -23,8 +25,6 @@ const CommentForm: React.FC = () => {
 
     const commentValue = watch('comment', '');
 
-    console.log(`profileResponse: `, profileResponse);
-
     useEffect(() => {
         autoResizeTextarea();
     }, [commentValue]);
@@ -44,13 +44,15 @@ const CommentForm: React.FC = () => {
     };
 
     const autoResizeTextarea = () => {
-        const textarea: HTMLTextAreaElement = document.getElementById('comment') as HTMLTextAreaElement;
-
+        const textarea = document.getElementById('form-comment') as HTMLTextAreaElement;
         if (textarea) {
             textarea.style.height = '40px';
-            const height = textarea.scrollHeight; // 높이
-            if (height + 8 >= 88) return (textarea.style.height = `${88}px`);
-            textarea.style.height = `${height + 8}px`;
+            const height = textarea.scrollHeight; // 높이 계산
+            if (height + 8 >= 88) {
+                textarea.style.height = `${88}px`;
+            } else {
+                textarea.style.height = `${height + 8}px`;
+            }
         }
     };
 
@@ -76,7 +78,7 @@ const CommentForm: React.FC = () => {
                         </div>
                     )}
                     <textarea
-                        id='comment'
+                        id='form-comment'
                         {...register('comment', { required: '댓글이 입력되지 않았습니다.' })}
                         placeholder='댓글 달기...'
                     />
