@@ -29,7 +29,7 @@ const FeedPage: React.FC = () => {
 
     useEffect(() => {
         if (postsData?.data.data) {
-            setPosts((prevPosts) => [...prevPosts, ...postsData.data.data]);
+            setPosts(() => [...postsData.data.data]);
             if (page >= (postsData.data.totalPageNum || 0)) {
                 setHasMore(false);
             }
