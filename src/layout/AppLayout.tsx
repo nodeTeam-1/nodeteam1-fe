@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ToastMessage from '../components/ToastMessage';
 import Modal from '../components/modal/Modal';
@@ -16,6 +17,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     let sseEventSource: EventSource; // SSE 이벤트 소스
     const { userId, userDelete } = useUserStore();
     const { setCurrentMessage, setDeleteIndex } = useDmStore();
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
     // 사용자 ID가 변경될 때마다 SSE 연결 및 이벤트 처리
     useEffect(() => {
@@ -49,12 +51,17 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         }
     }, [userId, setCurrentMessage, setDeleteIndex, userDelete]);
 
+    // 메인페이지 이동
+    const goToMain = () => {
+        navigate('/');
+    };
+
     return (
         <div className='layout'>
             <ToastMessage />
             <Navbar setIsModalOpen={setIsModalOpen} />
             <header>
-                <h1 className='page-logo'>
+                <h1 className='page-logo' onClick={goToMain}>
                     <img src='/picktalk.png' alt='logo' />
                 </h1>
             </header>
