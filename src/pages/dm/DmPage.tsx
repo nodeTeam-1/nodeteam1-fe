@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { deleteDmMutation, getDmListenerQuery, sendDmMutation } from '../../hooks/useDmHook';
+import { getProfileQuery } from '../../hooks/useProfileHook';
 import { useDmStore } from '../../store/dmStore';
 import { useUserStore } from '../../store/userStore';
 import './dm.scss';
@@ -25,7 +26,8 @@ export const DmPage = () => {
     const { id } = useParams();
 
     const [queryStat, setQueryStat] = useState<boolean>(true);
-    const response = getDmListenerQuery(id || '', queryStat);
+    const dmResponse = getDmListenerQuery(id || '', queryStat);
+    const userResponse = getProfileQuery(id || '');
     const sendMutation = sendDmMutation();
     const deleteMutation = deleteDmMutation();
 
@@ -67,12 +69,12 @@ export const DmPage = () => {
     };
 
     useEffect(() => {
-        if (response.isLoading || !response.data) return;
+        if (dmResponse.isLoading || !dmResponse.data) return;
 
-        console.log(response.isLoading, response.data.data.dm);
-        setMsgStorage(response.data.data.dm.messages);
+        console.log(dmResponse.isLoading, dmResponse.data.data.dm);
+        setMsgStorage(dmResponse.data.data.dm.messages);
         setQueryStat(false);
-    }, [response.isLoading, response.data]);
+    }, [dmResponse.isLoading, dmResponse.data]);
 
     useEffect(() => {
         console.log(currentMessage);
@@ -91,7 +93,7 @@ export const DmPage = () => {
 
     return (
         <div className='page-container dm-page'>
-            <h2 className='page-title'>{}님과의 대화</h2>
+            <h2 className='page-title'>{userResponse?.data?.data.user.name}님과의 대화</h2>
             <ul>
                 {msgStorage?.map((msg: Message, index: number) => (
                     <li key={index} onClick={() => chattingDeleteClick(msg.userId, msg.message, msg.messageIndex)}>

@@ -23,11 +23,12 @@ const Navbar: React.FC<NavbarProps> = ({ setIsModalOpen }) => {
     const logoutClick = () => {
         userDelete();
         sessionStorage.removeItem('token');
+        navigate('/user/login');
     };
 
     // 메세지 클릭 시 사용자 리스트 페이지로 이동
     const dmClick = () => {
-        navigate('/userList');
+        navigate('/follow');
     };
 
     const location = useLocation(); // 현재 경로 정보
