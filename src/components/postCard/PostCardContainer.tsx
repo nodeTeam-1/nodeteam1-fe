@@ -32,8 +32,8 @@ const PostCardContainer: React.FC<PostCardContainerProps> = ({ posts }) => {
     const navigate = useNavigate();
     return (
         <div className='post-card-container'>
-            {posts.map((post) => (
-                <div className='post-card-wrap' key={post._id}>
+            {posts.map((post, index) => (
+                <div className='post-card-wrap' key={post._id + index}>
                     <div className='user-head'>
                         <ProfileImage
                             userId={post.userId._id}

@@ -37,8 +37,8 @@ const CommentForm: React.FC = () => {
 
     const onSubmit: SubmitHandler<ICommentFormInput> = ({ comment }) => {
         targetUser
-            ? replyRegister({ commentId, content: comment.replace(`@${targetUser}`, '') })
-            : commentRegister({ postId: id!, content: comment });
+            ? replyRegister({ commentId, message: comment.replace(`@${targetUser}`, '') })
+            : commentRegister({ postId: id!, message: comment });
         reset(); // 제출 후 폼 초기화
         targetReset();
     };
