@@ -7,6 +7,7 @@ import FeedDetailPage from '../../pages/feed/FeedDetailPage';
 import MainPage from '../../pages/MainPage';
 import { DmPage } from '../../pages/dm/DmPage';
 import FollowListPage from '../../pages/follow/FollowListPage';
+import NotFoundPage from '../../pages/NotFoundPage';
 
 const MainRoutes: React.FC = () => {
     return (
@@ -18,6 +19,7 @@ const MainRoutes: React.FC = () => {
             <Route path='/user/register' element={<RegisterPage />} />
             <Route path='/follow' element={<FollowListPage />} />
             <Route path='/dm/:id' element={<DmPage />} />
+            <Route path='*' element={<NotFoundPage />} />
         </Routes>
     );
 };
