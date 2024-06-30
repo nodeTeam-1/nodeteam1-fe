@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaCircleUser } from 'react-icons/fa6';
@@ -6,6 +7,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { ICommentData } from './comment.type';
 import { getTimeSince } from '../../utils/common/getTimeSice';
 import { useCommentStore } from '../../store/commentStroe';
+import { getMyProfileQuery } from '../../hooks/useProfileHook';
 import './comment.scss';
 
 interface CommentCardProps {
@@ -16,11 +18,12 @@ const CommentCard: React.FC<CommentCardProps> = ({ data }) => {
     const [isOpenReply, setIsOpenReply] = useState(false);
     const [isLike, setIsLike] = useState(false);
     const { setTarget } = useCommentStore();
-
+    const { data: profileResponse } = getMyProfileQuery();
     const handleIsLike = () => {
         setIsLike(!isLike);
     };
-
+    // console.log(profileResponse?.data.user.profileImage)
+    console.log(data.userId.profileImage);
     return (
         <div className='comment-card'>
             <div className='comment-card-profile'>
