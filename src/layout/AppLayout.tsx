@@ -53,6 +53,11 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         <div className='layout'>
             <ToastMessage />
             <Navbar setIsModalOpen={setIsModalOpen} />
+            <header>
+                <h1 className='page-logo'>
+                    <img src='/picktalk.png' alt='logo' />
+                </h1>
+            </header>
             <div className='layout-children'>{children}</div>
             {isModalOpen && (
                 <Modal title='포스트 업로드'>

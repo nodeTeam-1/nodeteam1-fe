@@ -1,8 +1,31 @@
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    background-color: white;
+
+    .page-logo {
+        width: 250px;
+        margin: 32px auto 16px;
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+.layout-children {
+    padding-top: 86px;
+}
+
 .page-container {
     width: 100%;
     max-width: 768px;
     margin: 0 auto;
     padding: 0 16px;
+
     .page-title {
         font-size: 24px;
         font-weight: 600;
