@@ -8,7 +8,7 @@ import { useUserStore } from '../store/userStore';
 
 const MainPage: React.FC = () => {
     const navigate = useNavigate();
-    const { userId, userName } = useUserStore();
+    const { userId } = useUserStore();
     const { data, isLoading, isError } = getPostsQuery(1, '', 10); // 기본값으로 사용
     console.log('getPostsQuery data', data?.data.data);
 
@@ -34,9 +34,6 @@ const MainPage: React.FC = () => {
 
     return (
         <div className='main-page'>
-            <h1>
-                {userId} | {userName}
-            </h1>
             <PostCardContainer posts={data.data.data} />
         </div>
     );

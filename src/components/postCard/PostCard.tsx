@@ -30,7 +30,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onClick }) => {
     return (
         <div className='post-card'>
             <PostImage key={post.title} src={post.images} alt='PostImage' />
-            <PostCardAction likeCount={post.likeCount} />
+            <PostCardAction likeCount={post.likeCount} userId={post.userId._id} onClick={onClick} />
             <div className='post-contents'>
                 <p className='post-title'>{post.title}</p>
                 <p className='post-content' onClick={onClick}>
