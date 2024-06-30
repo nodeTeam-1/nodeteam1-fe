@@ -23,6 +23,16 @@ export interface PostData {
     updatedAt: Date;
 }
 
+// CreatePostData 데이터 인터페이스 정의
+export interface CreatePostData {
+    title: string;
+    category: string;
+    images: string;
+    content: string;
+    location: string;
+    tags: string[];
+}
+
 export interface PostResponse {
     data: PostData[];
     totalPageNum?: number;
@@ -37,6 +47,15 @@ export const getPostsQuery = (page: number, name: string, pageSize: number) => {
     });
 };
 
+// Posts Id별 목록 가져오기
+export const getPostsByUserIdQuery = (userId: string, page: number, pageSize: number) => {
+    const path = `/post/${userId}`;
+    return useQuery<AxiosResponse<PostResponse>>({
+        queryKey: ['getPostsByUserId', userId, page, pageSize],
+        queryFn: () => getAsync(`${path}?page=${page}&pageSize=${pageSize}`)
+    });
+};
+
 // Post 상세 정보 가져오기
 export const getPostDetailQuery = (postId: string) => {
     const path = `/post/${postId}`;
@@ -47,10 +66,10 @@ export const getPostDetailQuery = (postId: string) => {
 };
 
 // Post 생성
-export const createPostMutation = (): UseMutationResult<AxiosResponse<PostData>, unknown, PostData, unknown> => {
+export const createPostMutation = (): UseMutationResult<AxiosResponse<PostData>, unknown, CreatePostData, unknown> => {
     const path = `/post`;
-    return useMutation<AxiosResponse<PostData>, unknown, PostData>({
-        mutationFn: (data: PostData) => postAsync(path, data)
+    return useMutation<AxiosResponse<PostData>, unknown, CreatePostData>({
+        mutationFn: (data: CreatePostData) => postAsync(path, data)
     });
 };
 

@@ -1,0 +1,19 @@
+.dm-page {
+    .form-container {
+        max-width: 100%;
+        display: flex;
+        margin-top: 10px;
+
+        .input-wrap {
+            width: 100%;
+            margin-bottom: 0;
+
+        }
+
+        .btn.btn-submit {
+            width: 80px;
+            height: 36px;
+            margin-left: 10px;
+        }
+    }
+}

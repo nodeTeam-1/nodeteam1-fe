@@ -29,7 +29,14 @@ interface ProfileCardProps {
 const ProfileCard: React.FC<ProfileCardProps> = ({ profileData }) => {
     return (
         <div className='profile-card'>
-            <ProfileImage userId={''} />
+            <div className='feed-user'>
+                <ProfileImage
+                    userId={profileData._id}
+                    name={profileData.name}
+                    profileImageSrc={profileData.profileImage}
+                />
+                <span>{profileData.name}</span>
+            </div>
             <ProfileContent profileData={profileData} />
         </div>
     );

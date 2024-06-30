@@ -1,44 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import ProfileCard from '../../components/profile/ProfileCard';
 import PostImageContainer from '../../components/postImage/PostImageContainer';
-import AddPostForm from '../../components/addPostForm/AddPostForm';
-import Modal from '../../components/modal/Modal';
-import { getProfileQuery } from '../../hooks/useProfileHooks';
+import { getProfileQuery } from '../../hooks/useProfileHook';
+import { getPostsByUserIdQuery, PostData } from '../../hooks/usePostHook';
 import { useUserStore } from '../../store/userStore';
 import './feed.scss';
 
 const FeedPage: React.FC = () => {
-    const [close, setClose] = useState(false);
     const [selectedTab, setSelectedTab] = useState<number>(0);
     const { userId } = useUserStore();
+    const pageSize = 12;
+    const [page, setPage] = useState<number>(1);
+    const [posts, setPosts] = useState<PostData[]>([]);
+    const [hasMore, setHasMore] = useState(true);
+    const observer = useRef<IntersectionObserver | null>(null);
 
     const handleTabClick = (index: number) => {
         setSelectedTab(index);
     };
 
-    const tabs = [
-        { title: '게시글', content: <PostImageContainer src={''} alt={''} /> },
-        { title: '저장됨', content: <PostImageContainer src={''} alt={''} /> },
-        { title: '태그됨', content: <PostImageContainer src={''} alt={''} /> }
-    ];
+    const { data: profileData, isLoading: profileLoading, isError: profileError } = getProfileQuery(userId);
 
-    const { data, isLoading, isError } = getProfileQuery(userId);
-    console.log('getProfileQuery data', data?.data.user, isLoading, isError);
+    const {
+        data: postsData,
+        isLoading: postsLoading,
+        isError: postsError
+    } = getPostsByUserIdQuery(userId, page, pageSize);
 
-    if (isLoading) {
+    useEffect(() => {
+        if (postsData?.data.data) {
+            setPosts((prevPosts) => [...prevPosts, ...postsData.data.data]);
+            if (page >= (postsData.data.totalPageNum || 0)) {
+                setHasMore(false);
+            }
+        }
+    }, [postsData, page]);
+
+    const lastPostElementRef = useCallback(
+        (node: HTMLElement | null) => {
+            if (postsLoading) return;
+            if (observer.current) observer.current.disconnect();
+
+            observer.current = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && hasMore) {
+                    setPage((prevPage) => prevPage + 1);
+                }
+            });
+
+            if (node) observer.current.observe(node);
+        },
+        [postsLoading, hasMore]
+    );
+
+    if (profileLoading || postsLoading) {
         return <div className='profile-image'>Loading...</div>;
     }
 
-    if (isError || !data) {
-        return <div className='profile-image'>Error loading profile image</div>;
+    if (profileError || !profileData || postsError || !postsData) {
+        return <div className='profile-image'>Error loading data</div>;
     }
+
+    const renderTabContent = (posts: PostData[]) => (
+        <PostImageContainer posts={posts} lastPostElementRef={lastPostElementRef} />
+    );
+
+    const tabs = [
+        { title: '게시글', content: renderTabContent(posts) },
+        { title: '저장됨', content: renderTabContent(posts) },
+        { title: '태그됨', content: renderTabContent(posts) }
+    ];
 
     return (
         <div className='my-feed-page'>
-            <ProfileCard profileData={data.data.user} />
-            <div className='btn btn-add-post' onClick={() => setClose(true)}>
-                포스트 올리기
-            </div>
+            <ProfileCard profileData={profileData.data.user} />
             <div className='tab-menu'>
                 <ul className='tabs'>
                     {tabs.map((tab, index) => (
@@ -52,11 +86,6 @@ const FeedPage: React.FC = () => {
                 </ul>
                 <div className='tab-content'>{tabs[selectedTab].content}</div>
             </div>
-            {close && (
-                <Modal title='포스트 업로드'>
-                    <AddPostForm setClose={setClose} close={close} />
-                </Modal>
-            )}
         </div>
     );
 };

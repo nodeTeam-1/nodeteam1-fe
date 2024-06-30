@@ -3,11 +3,6 @@
     max-width: 768px;
     margin: 0 auto;
 
-    .btn-add-post {
-        width: 100%;
-        margin: 10px 0;
-    }
-
     .tab-menu {
         .tabs {
             display: flex;
@@ -35,9 +30,15 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    margin: 0 auto;
 
-    .feed-image {
+
+    .feed-content {
         width: 60%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
     }
 
     .feed-comment {
@@ -52,7 +53,7 @@
         flex-direction: column;
         justify-content: start;
 
-        .feed-image {
+        .feed-content {
             width: 100%;
         }
 

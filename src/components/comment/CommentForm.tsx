@@ -6,7 +6,7 @@ import { FaCircleUser } from 'react-icons/fa6';
 import { IoClose } from 'react-icons/io5';
 import { useCommentStore } from '../../store/commentStroe';
 import { useCommentRegister, useReplyCommentRegister } from '../../hooks/useCommentHook';
-import { getMyProfile } from '../../hooks/useProfileHooks';
+import { getMyProfileQuery } from '../../hooks/useProfileHook';
 import './comment.scss';
 
 interface ICommentFormInput {
@@ -19,7 +19,7 @@ const CommentForm: React.FC = () => {
     const { commentId, userName: targetUser, reset: targetReset } = useCommentStore();
     const { mutate: replyRegister } = useReplyCommentRegister(id ?? '');
     const { mutate: commentRegister } = useCommentRegister(id ?? '');
-    const { data: profileResponse } = getMyProfile();
+    const { data: profileResponse } = getMyProfileQuery();
 
     const commentValue = watch('comment', '');
 
