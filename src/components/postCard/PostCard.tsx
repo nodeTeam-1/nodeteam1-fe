@@ -23,7 +23,7 @@ interface Post {
 
 interface PostCardProps {
     post: Post;
-    onClick?: () => void; // Optional onClick prop
+    onClick?: () => void;
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post, onClick }) => {

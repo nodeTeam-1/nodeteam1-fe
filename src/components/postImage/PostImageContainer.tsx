@@ -24,15 +24,17 @@ export interface PostData {
 
 interface PostImageContainerProps {
     posts: PostData[];
+    lastPostElementRef: (node: HTMLElement | null) => void;
 }
 
-const PostImageContainer: React.FC<PostImageContainerProps> = ({ posts }) => {
+const PostImageContainer: React.FC<PostImageContainerProps> = ({ posts, lastPostElementRef }) => {
     const navigate = useNavigate();
 
     return (
         <div className='post-image-container'>
-            {posts.map((post) => (
+            {posts.map((post, index) => (
                 <PostImage
+                    ref={index === posts.length - 1 ? lastPostElementRef : null}
                     key={post._id}
                     src={post.images}
                     alt={post.title}
