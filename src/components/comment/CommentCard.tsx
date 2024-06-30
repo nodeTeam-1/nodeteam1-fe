@@ -23,11 +23,11 @@ const CommentCard: React.FC<CommentCardProps> = ({ data }) => {
         setIsLike(!isLike);
     };
     // console.log(profileResponse?.data.user.profileImage)
-    console.log(data.userId.profileImage);
+    console.log(`test: `, data.userId);
     return (
         <div className='comment-card'>
             <div className='comment-card-profile'>
-                {data.userId.profileImage !== '' ? (
+                {data.userId.profileImage ? (
                     <img src={data.userId.profileImage} />
                 ) : (
                     <FaCircleUser size={36} color={'#e8e8e8'} />

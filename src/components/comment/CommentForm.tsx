@@ -62,7 +62,13 @@ const CommentForm: React.FC = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='form-container form-wrapper'>
             <div className='form-inner-section'>
-                <FaCircleUser size={36} color={'#e8e8e8'} />
+                <div className='comment-card-profile'>
+                    {profileResponse?.data.user.profileImage ? (
+                        <img src={profileResponse?.data.user.profileImage} />
+                    ) : (
+                        <FaCircleUser size={36} color={'#e8e8e8'} />
+                    )}
+                </div>
                 <div className='form-middle-area'>
                     {targetUser && (
                         <div className='form-middle-reply'>
