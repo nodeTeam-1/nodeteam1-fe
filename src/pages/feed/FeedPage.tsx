@@ -1,59 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import ProfileCard from '../../components/profile/ProfileCard';
 import PostImageContainer from '../../components/postImage/PostImageContainer';
 import { getProfileQuery } from '../../hooks/useProfileHook';
-import { getPostsByUserIdQuery } from '../../hooks/usePostHook';
-// import { useUserStore } from '../../store/userStore';
+import { getPostsByUserIdQuery, PostData } from '../../hooks/usePostHook';
+import { useUserStore } from '../../store/userStore';
 import './feed.scss';
 
-import { useParams } from 'react-router-dom';
-
 const FeedPage: React.FC = () => {
-    const [selectedTab, setSelectedTab] = useState<number>(0); // 선택된 탭의 인덱스 상태
-    // const { userId } = useUserStore(); // 사용자 ID 상태 가져오기
-    const [page] = useState<number>(1); // 페이지 번호 상태
-    const [pageSize] = useState<number>(10); // 페이지 크기 상태
-
-    const { id } = useParams();
+    const [selectedTab, setSelectedTab] = useState<number>(0);
+    const { userId } = useUserStore();
+    const pageSize = 12;
+    const [page, setPage] = useState<number>(1);
+    const [posts, setPosts] = useState<PostData[]>([]);
+    const [hasMore, setHasMore] = useState(true);
+    const observer = useRef<IntersectionObserver | null>(null);
 
     const handleTabClick = (index: number) => {
-        setSelectedTab(index); // 탭 클릭 시 선택된 탭 인덱스 업데이트
+        setSelectedTab(index);
     };
 
-    const { data: profileData, isLoading: profileLoading, isError: profileError } = getProfileQuery(id || '');
+    const { data: profileData, isLoading: profileLoading, isError: profileError } = getProfileQuery(userId);
+
     const {
         data: postsData,
         isLoading: postsLoading,
         isError: postsError
-    } = getPostsByUserIdQuery(id || '', page, pageSize);
+    } = getPostsByUserIdQuery(userId, page, pageSize);
 
-    // 로딩 상태 처리
+    useEffect(() => {
+        if (postsData?.data.data) {
+            setPosts((prevPosts) => [...prevPosts, ...postsData.data.data]);
+            if (page >= (postsData.data.totalPageNum || 0)) {
+                setHasMore(false);
+            }
+        }
+    }, [postsData, page]);
+
+    const lastPostElementRef = useCallback(
+        (node: HTMLElement | null) => {
+            if (postsLoading) return;
+            if (observer.current) observer.current.disconnect();
+
+            observer.current = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && hasMore) {
+                    setPage((prevPage) => prevPage + 1);
+                }
+            });
+
+            if (node) observer.current.observe(node);
+        },
+        [postsLoading, hasMore]
+    );
+
     if (profileLoading || postsLoading) {
         return <div className='profile-image'>Loading...</div>;
     }
 
-    // 에러 상태 처리
     if (profileError || !profileData || postsError || !postsData) {
         return <div className='profile-image'>Error loading data</div>;
     }
 
-    // 탭 구성
-    const tabs = [
-        {
-            title: '게시글',
-            content: <PostImageContainer posts={postsData.data.data} />
-        },
-        {
-            title: '저장됨',
-            content: <PostImageContainer posts={postsData.data.data} />
-        },
-        {
-            title: '태그됨',
-            content: <PostImageContainer posts={postsData.data.data} />
-        }
-    ];
+    const renderTabContent = (posts: PostData[]) => (
+        <PostImageContainer posts={posts} lastPostElementRef={lastPostElementRef} />
+    );
 
-    console.log('#### postsData', postsData);
+    const tabs = [
+        { title: '게시글', content: renderTabContent(posts) },
+        { title: '저장됨', content: renderTabContent(posts) },
+        { title: '태그됨', content: renderTabContent(posts) }
+    ];
 
     return (
         <div className='my-feed-page'>
