@@ -27,11 +27,17 @@ header {
     max-width: 768px;
     margin: 0 auto;
     padding: 0 16px;
+    text-align: center;
 
     .page-title {
         font-size: 24px;
         font-weight: 600;
         padding: 16px 0;
+    }
+
+    img{
+        width: 100%;
+        display: block;
     }
 }
 
