@@ -25,6 +25,7 @@
 }
 
 .feed-detail-page {
+    position: relative;
     width: 100%;
     max-width: 768px;
     display: flex;
@@ -43,6 +44,12 @@
 
     .feed-comment {
         width: 40%;
+    }
+
+    .btn-delete {
+        position: absolute;
+        bottom: 20px;
+        right: 0;
     }
 }
 
