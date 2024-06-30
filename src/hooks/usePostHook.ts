@@ -23,6 +23,10 @@ export interface PostData {
     updatedAt: Date;
 }
 
+export interface DetailPostData {
+    post: PostData;
+}
+
 // CreatePostData 데이터 인터페이스 정의
 export interface CreatePostData {
     title: string;
@@ -58,10 +62,11 @@ export const getPostsByUserIdQuery = (userId: string, page: number, pageSize: nu
 
 // Post 상세 정보 가져오기
 export const getPostDetailQuery = (postId: string) => {
-    const path = `/post/${postId}`;
-    return useQuery<AxiosResponse<PostData>>({
+    const path = `/post/detail/${postId}`;
+    return useQuery<AxiosResponse<DetailPostData>>({
         queryKey: ['getPostDetail', postId],
-        queryFn: () => getAsync(path)
+        queryFn: () => getAsync(path),
+        enabled: postId !== ''
     });
 };
 
