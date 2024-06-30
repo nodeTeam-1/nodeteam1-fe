@@ -57,14 +57,18 @@ export const DmPage = () => {
     };
 
     const chattingDeleteClick = (user: User, msg: string, messageIndex: number) => {
-        if (window.confirm(`[${user.name}님] ${msg}\n해당 대화를 삭제하시겠습니까?`) && id) {
-            deleteMutation.mutate({ reciveId: id, messageIndex });
+        if (user.name === userName) {
+            if (window.confirm(`[${user.name}님] ${msg}\n해당 대화를 삭제하시겠습니까?`) && id) {
+                deleteMutation.mutate({ reciveId: id, messageIndex });
 
-            setMsgStorage((prevMessages) =>
-                prevMessages.map((msg) =>
-                    msg.messageIndex === messageIndex ? { ...msg, isDeleted: true, message: '삭제되었습니다.' } : msg
-                )
-            );
+                setMsgStorage((prevMessages) =>
+                    prevMessages.map((msg) =>
+                        msg.messageIndex === messageIndex
+                            ? { ...msg, isDeleted: true, message: '삭제되었습니다.' }
+                            : msg
+                    )
+                );
+            }
         }
     };
 
