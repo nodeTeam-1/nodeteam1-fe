@@ -48,11 +48,11 @@ export const getPostsQuery = (page: number, name: string, pageSize: number) => {
 };
 
 // Posts Id별 목록 가져오기
-export const getPostsByUserIdQuery = (userId: string) => {
+export const getPostsByUserIdQuery = (userId: string, page: number, pageSize: number) => {
     const path = `/post/${userId}`;
     return useQuery<AxiosResponse<PostResponse>>({
-        queryKey: ['getPostsByUserId', userId],
-        queryFn: () => getAsync(path)
+        queryKey: ['getPostsByUserId', userId, page, pageSize],
+        queryFn: () => getAsync(`${path}?page=${page}&pageSize=${pageSize}`)
     });
 };
 
