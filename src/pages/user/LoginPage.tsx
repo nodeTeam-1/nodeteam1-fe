@@ -32,14 +32,14 @@ const LoginPage: React.FC = () => {
             setUserId(data?.data.user._id);
             setUserName(data?.data.user.name);
             setUserProfileImage(data?.data.user.profileImage);
-            setUserBio(data?.data.user.Bio);
+            setUserBio(data?.data.user.bio);
             navigate('/');
         } else if (mutation.isSuccess && mutation.data && mutation.data.status === 200) { // 뮤테이션 성공 시 메인 페이지로 이동
             console.log('Mutation successful:', mutation.data);
             setUserId(mutation.data.data.user._id);
             setUserName(mutation.data.data.user.name);
             setUserProfileImage(mutation.data.data.user.profileImage);
-            setUserBio(mutation.data.data.user.Bio);
+            setUserBio(mutation.data.data.user.bio);
             sessionStorage.setItem("token", mutation.data.data.token);
             navigate('/');
         }
