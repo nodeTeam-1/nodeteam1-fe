@@ -3,25 +3,29 @@ import ProfileCard from '../../components/profile/ProfileCard';
 import PostImageContainer from '../../components/postImage/PostImageContainer';
 import { getProfileQuery } from '../../hooks/useProfileHook';
 import { getPostsByUserIdQuery } from '../../hooks/usePostHook';
-import { useUserStore } from '../../store/userStore';
+// import { useUserStore } from '../../store/userStore';
 import './feed.scss';
+
+import { useParams } from 'react-router-dom';
 
 const FeedPage: React.FC = () => {
     const [selectedTab, setSelectedTab] = useState<number>(0); // 선택된 탭의 인덱스 상태
-    const { userId } = useUserStore(); // 사용자 ID 상태 가져오기
+    // const { userId } = useUserStore(); // 사용자 ID 상태 가져오기
     const [page] = useState<number>(1); // 페이지 번호 상태
     const [pageSize] = useState<number>(10); // 페이지 크기 상태
+
+    const { id } = useParams();
 
     const handleTabClick = (index: number) => {
         setSelectedTab(index); // 탭 클릭 시 선택된 탭 인덱스 업데이트
     };
 
-    const { data: profileData, isLoading: profileLoading, isError: profileError } = getProfileQuery(userId);
+    const { data: profileData, isLoading: profileLoading, isError: profileError } = getProfileQuery(id || '');
     const {
         data: postsData,
         isLoading: postsLoading,
         isError: postsError
-    } = getPostsByUserIdQuery(userId, page, pageSize);
+    } = getPostsByUserIdQuery(id || '', page, pageSize);
 
     // 로딩 상태 처리
     if (profileLoading || postsLoading) {
