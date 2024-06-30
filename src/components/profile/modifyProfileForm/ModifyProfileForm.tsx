@@ -12,13 +12,14 @@ interface ProfileFormInput {
 }
 
 // 컴포넌트 props 인터페이스 정의
-interface AddPostFormProps {
+interface ModifyProfileForm {
     setOpenModal: (value: boolean) => void;
     openModal: boolean;
 }
 
-const ModifyProfileForm: React.FC<AddPostFormProps> = ({ setOpenModal, openModal }) => {
+const ModifyProfileForm: React.FC<ModifyProfileForm> = ({ setOpenModal, openModal }) => {
     const { setUserProfileImage, setUserBio } = useUserStore();
+
     // react-hook-form 훅 사용
     const {
         register,
