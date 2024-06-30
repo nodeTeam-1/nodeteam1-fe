@@ -1,6 +1,6 @@
 import { useQuery, useMutation, UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
-import { deleteAsync, getAsync, postAsync } from '../utils/api/methods';
+import { getAsync, postAsync, putAsync, deleteAsync } from '../utils/api/methods';
 
 // User 데이터 인터페이스 정의
 interface User {
@@ -77,7 +77,7 @@ export const createPostMutation = (): UseMutationResult<AxiosResponse<PostData>,
 export const updatePostMutation = (): UseMutationResult<AxiosResponse<PostData>, unknown, PostData, unknown> => {
     const path = `/post`;
     return useMutation<AxiosResponse<PostData>, unknown, PostData>({
-        mutationFn: (data: PostData) => postAsync(path, data)
+        mutationFn: (data: PostData) => putAsync(path, data)
     });
 };
 
@@ -85,7 +85,7 @@ export const updatePostMutation = (): UseMutationResult<AxiosResponse<PostData>,
 export const deletePostMutation = (postId: string): UseMutationResult<AxiosResponse<void>, unknown, void, unknown> => {
     const path = `/post/${postId}`;
     return useMutation<AxiosResponse<void>, unknown, void>({
-        mutationFn: () => postAsync(path, {})
+        mutationFn: () => deleteAsync(path)
     });
 };
 

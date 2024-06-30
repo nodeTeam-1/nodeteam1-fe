@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import './postImage.scss';
 
 interface PostImageProps {
-    key: string;
     src: string;
     alt: string;
     onClick?: () => void;
 }
 
-const PostImage: React.FC<PostImageProps> = ({ src, alt, onClick }) => {
-    return (
-        <div className='post-image' onClick={onClick}>
-            <img src={src} alt={alt} />
-        </div>
-    );
-};
+const PostImage = forwardRef<HTMLDivElement, PostImageProps>(({ src, alt, onClick }, ref) => (
+    <div className='post-image' onClick={onClick} ref={ref}>
+        <img src={src} alt={alt} />
+    </div>
+));
+
+PostImage.displayName = 'PostImage';
 
 export default PostImage;
