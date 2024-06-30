@@ -77,7 +77,7 @@ const Navbar: React.FC<NavbarProps> = ({ setIsModalOpen }) => {
                     <MdOutlineLogout />
                 </li>
                 <li className='nav-item' onClick={goToMyFeedPage}>
-                    <ProfileImage name={userName} profileImageSrc={userProfileImage} />
+                    <ProfileImage userId={userId} name={userName} profileImageSrc={userProfileImage} />
                 </li>
             </ul>
         </nav>

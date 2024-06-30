@@ -28,7 +28,7 @@ const FollowListPage: React.FC = () => {
             {data?.data.user.map((element: UserInfo, index: number) =>
                 element._id !== userId ? (
                     <div className='user-head' key={index}>
-                        <ProfileImage name={element.name} profileImageSrc={element.profileImage} />
+                        <ProfileImage userId={element._id} name={element.name} profileImageSrc={element.profileImage} />
                         <ul className='user-info' onClick={() => postClick(element._id)}>
                             <li className='user-name'>{element.name}</li>
                         </ul>
